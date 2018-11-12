@@ -35,7 +35,7 @@ class EventCard extends Component {
         <CardActionArea>
           <div style={styles.mediaContainer}>
             <BlurImage src={this.props.media} {...this.props.mediaStyle} />
-            <div style={[styles.dimOverlay, this.props.mediaStyle]} />
+            <div style={{ ...styles.dimOverlay, ...this.props.mediaStyle }} />
             <div style={styles.overlay}>
               <Typography
                 variant="headline"
