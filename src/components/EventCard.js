@@ -64,10 +64,7 @@ class EventCard extends Component {
               {...this.props.imageStyle}
             />
             <div style={styles.overlay}>
-              <Typography
-                variant="headline"
-                style={{ color: '#fff' }}
-                gutterBottom>
+              <Typography variant="h3" style={{ color: '#fff' }} gutterBottom>
                 {this.props.title}
               </Typography>
               <EventChip
@@ -129,6 +126,8 @@ const styles = {
     left: '50%',
     top: '50%',
     transform: 'translate(-50%,-50%)',
+    overflowWrap: 'break-word',
+    wordBreak: 'break-word',
   },
   dimOverlay: {
     position: 'absolute',

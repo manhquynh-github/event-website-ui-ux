@@ -1,11 +1,12 @@
 import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import TopBar from '../components/TopBar';
-import EventCard from '../components/EventCard';
 import Image from '../assets/sample_image.jpg';
-import moment from 'moment';
+import EventCard from '../components/EventCard';
+import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
+import { Typography } from '@material-ui/core';
 
 class HomePage extends Component {
   static propTypes = {
