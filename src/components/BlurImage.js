@@ -14,22 +14,23 @@ class BlurImage extends Component {
       PropTypes.number.isRequired,
     ]).isRequired,
     radius: PropTypes.number,
+    dim: PropTypes.bool,
+    dimStyle: PropTypes.object,
+    showOriginal: PropTypes.bool,
+    originalStyle: PropTypes.object,
   };
 
   static defaultProps = {
     orientation: 'horizontal',
+    height: 100,
     width: '100%',
     radius: 100,
+    dim: false,
+    showOriginal: false,
   };
 
   render() {
     const orientedStyle = this.getOrientedStyle();
-
-    const mediaStyle = {
-      ...styles.media,
-      ...orientedStyle,
-      backgroundImage: `url('${this.props.src}')`,
-    };
 
     const backgroundStyle = {
       ...styles.background,
@@ -38,10 +39,28 @@ class BlurImage extends Component {
       filter: `blur(${this.props.radius}px)`,
     };
 
+    const dimOverlayStyle = this.props.dim
+      ? {
+          ...styles.dimOverlay,
+          ...orientedStyle,
+          ...this.props.dimStyle,
+        }
+      : undefined;
+
+    const mediaStyle = this.props.showOriginal
+      ? {
+          ...styles.media,
+          ...orientedStyle,
+          backgroundImage: `url('${this.props.src}')`,
+          ...this.props.originalStyle,
+        }
+      : undefined;
+
     return (
       <div style={styles.container}>
         <div style={backgroundStyle} />
         <div style={mediaStyle} />
+        <div style={dimOverlayStyle} />
       </div>
     );
   }
@@ -71,6 +90,13 @@ const styles = {
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     width: '120%',
+  },
+  dimOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
 };
 

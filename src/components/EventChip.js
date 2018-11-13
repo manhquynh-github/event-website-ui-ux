@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 class EventChip extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    tags: PropTypes.arrayOf(PropTypes.string),
+    tags: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
     style: PropTypes.object,
   };
 

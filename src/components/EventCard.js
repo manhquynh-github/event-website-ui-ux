@@ -1,14 +1,21 @@
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardContent from '@material-ui/core/CardContent';
-import Grid from '@material-ui/core/Grid';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Typography from '@material-ui/core/Typography';
-import AttachMoney from '@material-ui/icons/AttachMoney';
-import CalendarTodayOutlined from '@material-ui/icons/CalendarTodayOutlined';
-import LocationOnOutlined from '@material-ui/icons/LocationOnOutlined';
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  Grid,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Typography,
+} from '@material-ui/core';
+import {
+  AttachMoney,
+  CalendarTodayOutlined,
+  LocationOnOutlined,
+} from '@material-ui/icons';
+//import AttachMoney from '@material-ui/icons/AttachMoney';
+//import CalendarTodayOutlined from '@material-ui/icons/CalendarTodayOutlined';
+//import LocationOnOutlined from '@material-ui/icons/LocationOnOutlined';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -17,25 +24,45 @@ import EventChip from './EventChip';
 
 class EventCard extends Component {
   static propTypes = {
-    style: PropTypes.object,
-    title: PropTypes.string,
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    location: PropTypes.string.isRequired,
+    startDate: PropTypes.instanceOf(moment).isRequired,
+    endDate: PropTypes.instanceOf(moment).isRequired,
+    link: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string),
-    media: PropTypes.string.isRequired,
-    mediaStyle: PropTypes.object,
-    location: PropTypes.string,
-    startDate: PropTypes.instanceOf(moment),
-    endDate: PropTypes.instanceOf(moment),
     prize: PropTypes.string,
-    link: PropTypes.string,
+    width: PropTypes.number,
+    height: PropTypes.number,
+    style: PropTypes.object,
+    imageStyle: PropTypes.object,
+    raised: PropTypes.bool,
+    square: PropTypes.bool,
+  };
+
+  static defaultProps = {
+    raised: undefined,
+    square: undefined,
   };
 
   render() {
     return (
-      <Card style={this.props.style}>
+      <Card
+        style={{
+          width: this.props.width,
+          height: this.props.height,
+          ...this.props.style,
+        }}
+        raised={this.props.raised}
+        square={this.props.square}>
         <CardActionArea>
-          <div style={styles.mediaContainer}>
-            <BlurImage src={this.props.media} {...this.props.mediaStyle} />
-            <div style={{ ...styles.dimOverlay, ...this.props.mediaStyle }} />
+          <div style={styles.imageContainer}>
+            <BlurImage
+              dim
+              showOriginal
+              src={this.props.image}
+              {...this.props.imageStyle}
+            />
             <div style={styles.overlay}>
               <Typography
                 variant="headline"
@@ -94,7 +121,7 @@ const styles = {
   item: {
     padding: 16,
   },
-  mediaContainer: {
+  imageContainer: {
     position: 'relative',
   },
   overlay: {
