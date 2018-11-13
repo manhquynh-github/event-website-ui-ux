@@ -81,7 +81,11 @@ class TopBar extends Component {
 
     return (
       <div>
-        <AppBar className={classes.appBar}>
+        <AppBar
+          className={classes.appBar}
+          style={
+            this.props.transparent ? { backgroundColor: 'black' } : undefined
+          }>
           <Toolbar>
             {/* <IconButton
               className={classes.menuButton}
