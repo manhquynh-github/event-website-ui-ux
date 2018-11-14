@@ -2,11 +2,13 @@ import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Image from '../assets/sample_image.jpg';
+import TopicImage from '../assets/topics';
+import EventImage from '../assets/events';
 import EventCard from '../components/EventCard';
 import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
 import { Typography } from '@material-ui/core';
+import Colors from '../constants/Colors';
 
 class HomePage extends Component {
   static propTypes = {
@@ -50,32 +52,38 @@ class HomePage extends Component {
             endDate={moment(new Date())}
             location="MUNICH, GERMANY"
             prize="Prize pool: $10000"
-            image={Image}
+            image={EventImage.Event1}
             imageStyle={{ height: this.state.height / 2 }}
           />
-          <div className={classes.paddedContainer}>
-            <TopicGrid
-              style={{ padding: 32 }}
-              topics={this.generate()}
-              imageStyle={{ height: 140 }}
-              cardStyle={{ textAlign: 'center' }}
-            />
+          <div className={classes.topicContainer}>
+            <Typography
+              variant="h4"
+              gutterBottom
+              style={{ color: 'black' }}
+              align="center">
+              Popular Topics
+            </Typography>
+            <div className={classes.paddedContainer}>
+              <TopicGrid
+                style={{ padding: 32 }}
+                topics={sampleTopics}
+                imageStyle={{ height: 100 }}
+                cardStyle={{ textAlign: 'center' }}
+              />
+            </div>
+          </div>
+          <div className={classes.whyContainer}>
+            <Typography
+              variant="h4"
+              gutterBottom
+              style={{ color: 'black' }}
+              align="center">
+              Why us
+            </Typography>
           </div>
         </main>
       </div>
     );
-  }
-
-  generate() {
-    const x = [];
-    for (let i = 0; i < 8; i++) {
-      x.push({
-        title: 'Aritifical Intelligence',
-        image: Image,
-        count: 99,
-      });
-    }
-    return x;
   }
 
   updateWindowDimensions() {
@@ -95,6 +103,17 @@ class HomePage extends Component {
   }
 }
 
+const sampleTopics = [
+  { title: 'Aritifical Intelligence', image: TopicImage.AI, count: 51 },
+  { title: 'Industry', image: TopicImage.Industry, count: 40 },
+  { title: 'Big Data', image: TopicImage.BigData, count: 39 },
+  { title: 'Internet of Things', image: TopicImage.IOT, count: 36 },
+  { title: 'Non-Profit', image: TopicImage.NonProfit, count: 25 },
+  { title: 'API', image: TopicImage.API, count: 16 },
+  { title: 'Transport', image: TopicImage.Transport, count: 17 },
+  { title: 'Blockchain', image: TopicImage.BlockChain, count: 18 },
+];
+
 const styles = (theme) => ({
   root: {
     flexGrow: 1,
@@ -103,6 +122,7 @@ const styles = (theme) => ({
     position: 'relative',
     display: 'flex',
   },
+  toolbar: theme.mixins.toolbar,
   content: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.default,
@@ -113,7 +133,15 @@ const styles = (theme) => ({
     paddingLeft: theme.spacing.unit * 6,
     paddingRight: theme.spacing.unit * 6,
   },
-  toolbar: theme.mixins.toolbar,
+  topicContainer: {
+    paddingTop: theme.spacing.unit * 8,
+    paddingBottom: theme.spacing.unit * 8,
+  },
+  whyContainer: {
+    paddingTop: theme.spacing.unit * 8,
+    paddingBottom: theme.spacing.unit * 8,
+    backgroundColor: '#d3d3d3',
+  },
 });
 
 export default withStyles(styles)(HomePage);
