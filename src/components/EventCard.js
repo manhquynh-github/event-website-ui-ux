@@ -38,11 +38,13 @@ class EventCard extends Component {
     imageStyle: PropTypes.object,
     raised: PropTypes.bool,
     square: PropTypes.bool,
+    elevation: PropTypes.number,
   };
 
   static defaultProps = {
     raised: undefined,
     square: undefined,
+    elevation: undefined,
   };
 
   render() {
@@ -54,15 +56,11 @@ class EventCard extends Component {
           ...this.props.style,
         }}
         raised={this.props.raised}
-        square={this.props.square}>
+        square={this.props.square}
+        elevation={this.props.elevation}>
         <CardActionArea>
           <div style={styles.imageContainer}>
-            <BlurImage
-              dim
-              showOriginal
-              src={this.props.image}
-              {...this.props.imageStyle}
-            />
+            <BlurImage dim src={this.props.image} {...this.props.imageStyle} />
             <div style={styles.overlay}>
               <Typography variant="h3" style={{ color: '#fff' }} gutterBottom>
                 {this.props.title}
@@ -120,6 +118,7 @@ const styles = {
   },
   imageContainer: {
     position: 'relative',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   overlay: {
     position: 'absolute',

@@ -24,7 +24,7 @@ class BlurImage extends Component {
     orientation: 'horizontal',
     height: 100,
     width: '100%',
-    radius: 100,
+    radius: 50,
     dim: false,
     showOriginal: false,
   };

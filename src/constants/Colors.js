@@ -1,7 +1,10 @@
-import { blue } from '@material-ui/core/colors';
-
-export const primaryColor = blue[500];
+export const primaryColor = '#2196F3';
 
 export default {
   primaryColor,
+  primaryDark: '#1769aa',
+  primaryLight: '#4dabf5',
+  white: '#fff',
+  black: '#000',
+  paper: '#f2f2f2',
 };

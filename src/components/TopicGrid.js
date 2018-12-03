@@ -21,8 +21,9 @@ class TopicGrid extends Component {
         url: PropTypes.string,
       }).isRequired
     ).isRequired,
-    cardStyle: PropTypes.object,
+    childStyle: PropTypes.object,
     imageStyle: PropTypes.object,
+    cardStyle: PropTypes.object,
     style: PropTypes.object,
   };
 
@@ -30,15 +31,15 @@ class TopicGrid extends Component {
     return (
       <Grid style={this.props.style} container spacing={32}>
         {this.props.topics.map((e, i) => (
-          <Grid key={`topic-${i}`} item xs={12} md={6} lg={3}>
+          <Grid key={`topic-${i}`} item xs={12} sm={6} lg={3}>
             <TopicCard
-              raised
               title={e.title}
               image={e.image}
               url={e.url}
               count={e.count}
-              style={this.props.cardStyle}
+              style={this.props.childStyle}
               imageStyle={this.props.imageStyle}
+              {...this.props.cardStyle}
             />
           </Grid>
         ))}

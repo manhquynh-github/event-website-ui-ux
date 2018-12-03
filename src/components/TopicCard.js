@@ -21,11 +21,13 @@ class TopicCard extends Component {
     height: PropTypes.number,
     raised: PropTypes.bool,
     square: PropTypes.bool,
+    elevation: PropTypes.number,
   };
 
   static defaultProps = {
     raised: undefined,
     square: undefined,
+    elevation: undefined,
   };
 
   render() {
@@ -37,7 +39,8 @@ class TopicCard extends Component {
           ...this.props.style,
         }}
         raised={this.props.raised}
-        square={this.props.square}>
+        square={this.props.square}
+        elevation={this.props.elevation}>
         <CardActionArea>
           <BlurImage
             showOriginal

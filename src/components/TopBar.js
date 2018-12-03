@@ -1,13 +1,18 @@
-import AppBar from '@material-ui/core/AppBar';
-import Badge from '@material-ui/core/Badge';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import {
+  AppBar,
+  Badge,
+  IconButton,
+  Button,
+  Input,
+  Menu,
+  MenuItem,
+  Toolbar,
+  Typography,
+} from '@material-ui/core';
+
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
+
 import Add from '@material-ui/icons/Add';
 import MenuIcon from '@material-ui/icons/Menu';
 import MoreIcon from '@material-ui/icons/MoreVert';
@@ -17,10 +22,16 @@ import Settings from '@material-ui/icons/Settings';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 
 class TopBar extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    elevation: PropTypes.number,
+  };
+
+  static defaultProps = {
+    elevation: undefined,
   };
 
   state = {
@@ -61,17 +72,6 @@ class TopBar extends Component {
         </MenuItem>
         <MenuItem>
           <IconButton color="inherit">
-            <Badge
-              className={classes.margin}
-              badgeContent={1}
-              color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <p>Notifications</p>
-        </MenuItem>
-        <MenuItem>
-          <IconButton color="inherit">
             <Settings />
           </IconButton>
           <p>Settings</p>
@@ -81,12 +81,8 @@ class TopBar extends Component {
 
     return (
       <div>
-        <AppBar
-          className={classes.appBar}
-          style={
-            this.props.transparent ? { backgroundColor: 'black' } : undefined
-          }>
-          <Toolbar>
+        <AppBar className={classes.appBar} elevation={this.props.elevation}>
+          <Toolbar className={classes.toolbar} disableGutters>
             {/* <IconButton
               className={classes.menuButton}
               color="inherit"
@@ -98,7 +94,7 @@ class TopBar extends Component {
               variant="title"
               color="inherit"
               noWrap>
-              Hackathon
+              Event Hackathon
             </Typography>
             <div className={classes.search}>
               <div className={classes.searchIcon}>
@@ -115,17 +111,10 @@ class TopBar extends Component {
             </div>
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton color="inherit">
+              <Button className={classes.createButton} variant="contained">
                 <Add />
-              </IconButton>
-              <IconButton color="inherit">
-                <Badge
-                  className={classes.margin}
-                  badgeContent={1}
-                  color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+                Create an event
+              </Button>
               <IconButton color="inherit">
                 <Settings />
               </IconButton>
@@ -154,9 +143,16 @@ const styles = (theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.white,
     zIndex: theme.zIndex.drawer + 1,
     float: 'top',
+    height: 50,
+    paddingLeft: Layout.padding.page,
+    paddingRight: Layout.padding.page,
+  },
+  toolbar: {
+    minHeight: 0,
+    height: 50,
   },
   menuButton: {
     marginLeft: -12,
@@ -167,44 +163,59 @@ const styles = (theme) => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     },
+    color: Colors.black,
   },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
+    backgroundColor: Colors.paper,
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
     width: '100%',
+    height: 40,
+    '&:hover': {
+      backgroundColor: '#ebebeb',
+    },
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing.unit * 3,
-      width: 'auto',
+      marginLeft: theme.spacing.unit * 4,
+      width: 350,
     },
   },
   searchIcon: {
-    width: theme.spacing.unit * 9,
+    width: 50,
     height: '100%',
     position: 'absolute',
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    color: '#5c5c5c',
   },
   inputRoot: {
     color: 'inherit',
     width: '100%',
   },
   inputInput: {
-    paddingTop: theme.spacing.unit,
-    paddingRight: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit,
-    paddingLeft: theme.spacing.unit * 10,
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 50,
     transition: theme.transitions.create('width'),
     width: '100%',
+    height: 40,
     [theme.breakpoints.up('md')]: {
-      width: 200,
+      width: 300,
+    },
+    color: Colors.black,
+  },
+  createButton: {
+    backgroundColor: Colors.primaryColor,
+    color: Colors.white,
+    height: 40,
+    alignSelf: 'center',
+    '&:hover': {
+      backgroundColor: Colors.primaryDark,
+      color: Colors.white,
     },
   },
   sectionDesktop: {
