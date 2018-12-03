@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-class BlurImage extends Component {
+class AdvancedImage extends Component {
   static propTypes = {
     src: PropTypes.string.isRequired,
     orientation: PropTypes.oneOf(['horizontal', 'vertical']).isRequired,
@@ -13,6 +13,7 @@ class BlurImage extends Component {
       PropTypes.string.isRequired,
       PropTypes.number.isRequired,
     ]).isRequired,
+    blur: PropTypes.bool,
     radius: PropTypes.number,
     dim: PropTypes.bool,
     dimStyle: PropTypes.object,
@@ -24,6 +25,7 @@ class BlurImage extends Component {
     orientation: 'horizontal',
     height: 100,
     width: '100%',
+    blur: false,
     radius: 50,
     dim: false,
     showOriginal: false,
@@ -36,7 +38,7 @@ class BlurImage extends Component {
       ...styles.background,
       ...orientedStyle,
       backgroundImage: `url('${this.props.src}')`,
-      filter: `blur(${this.props.radius}px)`,
+      filter: `blur(${this.props.blur ? this.props.radius : 0}px)`,
     };
 
     const dimOverlayStyle = this.props.dim
@@ -100,4 +102,4 @@ const styles = {
   },
 };
 
-export default BlurImage;
+export default AdvancedImage;

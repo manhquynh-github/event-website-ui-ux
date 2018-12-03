@@ -4,6 +4,9 @@ export default {
       width: 1366,
       height: 768,
     },
+    offset: {
+      y: 111,
+    },
   },
   spacing: {
     unit: 8,

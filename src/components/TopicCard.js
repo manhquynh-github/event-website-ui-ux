@@ -7,7 +7,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import BlurImage from './BlurImage';
+import AdvancedImage from './AdvancedImage';
+import Colors from '../constants/Colors';
 
 class TopicCard extends Component {
   static propTypes = {
@@ -42,18 +43,22 @@ class TopicCard extends Component {
         square={this.props.square}
         elevation={this.props.elevation}>
         <CardActionArea>
-          <BlurImage
+          <AdvancedImage
+            blur
             showOriginal
             src={this.props.image}
             {...this.props.imageStyle}
           />
-          <CardContent>
-            <Typography variant="h5" component="h2">
+          <CardContent style={styles.cardContent}>
+            <Typography style={styles.title} align="center">
               {this.props.title}
             </Typography>
-            <Typography variant="subtitle1" component="p">{`${
-              this.props.count
-            } topics`}</Typography>
+            <Typography
+              style={styles.subTitle}
+              variant="subtitle1"
+              align="center">
+              {`${this.props.count} events`}
+            </Typography>
           </CardContent>
         </CardActionArea>
       </Card>
@@ -61,6 +66,23 @@ class TopicCard extends Component {
   }
 }
 
-const styles = {};
+const styles = {
+  cardContent: {
+    padding: 0,
+  },
+  title: {
+    fontSize: 24,
+    marginTop: 4,
+    marginBottom: 0,
+    color: Colors.black,
+    lineHeight: 'normal',
+  },
+  subTitle: {
+    marginTop: 0,
+    fontSize: 18,
+    marginBottom: 4,
+    lineHeight: 'normal',
+  },
+};
 
 export default TopicCard;

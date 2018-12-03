@@ -3,6 +3,7 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TopicImage from '../assets/topics';
+import BackgroundImage from '../assets/background';
 import EventImage from '../assets/events';
 import EventCard from '../components/EventCard';
 import TopBar from '../components/TopBar';
@@ -10,6 +11,7 @@ import TopicGrid from '../components/TopicGrid';
 import { Typography } from '@material-ui/core';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import AdvancedImage from '../components/AdvancedImage';
 
 class HomePage extends Component {
   static propTypes = {
@@ -37,7 +39,9 @@ class HomePage extends Component {
 
   render() {
     const hotEventCardHeight =
-      ((this.state.height + 111 - styles.navBar.height) / 3) * 2;
+      ((this.state.height + Layout.default.offset.y - styles.navBar.height) /
+        3) *
+      2;
     const hotEventCardImageHeight = hotEventCardHeight - 50;
     const hotEventCard = (
       <EventCard
@@ -55,7 +59,8 @@ class HomePage extends Component {
       />
     );
 
-    const topicCardHeight = (((this.state.height + 111) / 3) * 2 - 64 - 32) / 2;
+    const topicCardHeight =
+      (((this.state.height + Layout.default.offset.y) / 3) * 2 - 64 - 32) / 2;
     const topicCardLabelHeight = topicCardHeight / 4 + 8;
     const topicCardImageHeight = topicCardHeight - topicCardLabelHeight;
     const topicColumns =
@@ -91,7 +96,14 @@ class HomePage extends Component {
         <main style={styles.content}>
           {hotEventCard}
           {topic}
-          <div style={styles.whyContainer}>
+          <div style={styles.whyUsContainer}>
+            <AdvancedImage
+              height={500}
+              src={BackgroundImage.Hackathon}
+              dim
+              showOriginal
+              dimStyle={{ backgroundColor: 'rgba(44, 56, 126, 0.975)' }}
+            />
             <Typography
               variant="h4"
               gutterBottom
@@ -124,10 +136,10 @@ class HomePage extends Component {
 }
 
 const sampleTopics = [
-  { title: 'Aritifical Intelligence', image: TopicImage.AI, count: 51 },
+  { title: 'AI', image: TopicImage.AI, count: 51 },
   { title: 'Industry', image: TopicImage.Industry, count: 40 },
   { title: 'Big Data', image: TopicImage.BigData, count: 39 },
-  { title: 'Internet of Things', image: TopicImage.IOT, count: 36 },
+  { title: 'IoT', image: TopicImage.IOT, count: 36 },
   { title: 'Non-Profit', image: TopicImage.NonProfit, count: 25 },
   { title: 'API', image: TopicImage.API, count: 16 },
   { title: 'Transport', image: TopicImage.Transport, count: 17 },
@@ -164,7 +176,7 @@ const styles = {
     paddingLeft: Layout.padding.page,
     paddingRight: Layout.padding.page,
     paddingTop: Layout.padding.page,
-    paddingBottom: Layout.padding.page,
+    paddingBottom: 0,
   },
   topicHeading: {
     color: Colors.primaryColor,
@@ -186,12 +198,11 @@ const styles = {
     elevation: 6,
     square: true,
   },
-  whyContainer: {
+  whyUsContainer: {
     paddingLeft: Layout.padding.page,
     paddingRight: Layout.padding.page,
     paddingTop: Layout.padding.page,
     paddingBottom: Layout.padding.page,
-    backgroundColor: '#d3d3d3',
   },
 };
 

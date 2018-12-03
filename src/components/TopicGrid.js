@@ -8,7 +8,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import BlurImage from './BlurImage';
+import AdvancedImage from './AdvancedImage';
 import TopicCard from './TopicCard';
 
 class TopicGrid extends Component {

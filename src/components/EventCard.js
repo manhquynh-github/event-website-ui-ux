@@ -13,13 +13,10 @@ import {
   CalendarTodayOutlined,
   LocationOnOutlined,
 } from '@material-ui/icons';
-//import AttachMoney from '@material-ui/icons/AttachMoney';
-//import CalendarTodayOutlined from '@material-ui/icons/CalendarTodayOutlined';
-//import LocationOnOutlined from '@material-ui/icons/LocationOnOutlined';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import BlurImage from './BlurImage';
+import AdvancedImage from './AdvancedImage';
 import EventChip from './EventChip';
 
 class EventCard extends Component {
@@ -60,7 +57,12 @@ class EventCard extends Component {
         elevation={this.props.elevation}>
         <CardActionArea>
           <div style={styles.imageContainer}>
-            <BlurImage dim src={this.props.image} {...this.props.imageStyle} />
+            <AdvancedImage
+              blur
+              dim
+              src={this.props.image}
+              {...this.props.imageStyle}
+            />
             <div style={styles.overlay}>
               <Typography variant="h3" style={{ color: '#fff' }} gutterBottom>
                 {this.props.title}
