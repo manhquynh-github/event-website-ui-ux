@@ -2,7 +2,6 @@ import { withStyles } from '@material-ui/core/styles';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import TopicImage from '../assets/topics';
 import BackgroundImage from '../assets/background';
 import EventImage from '../assets/events';
 import EventCard from '../components/EventCard';
@@ -15,6 +14,7 @@ import AdvancedImage from '../components/AdvancedImage';
 import WhyUsGrid from '../components/WhyUsGrid';
 import { Button } from '@material-ui/core';
 import Add from '@material-ui/icons/Add';
+import { SampleTopics, WhyUsContent } from '../constants/Data';
 
 class HomePage extends Component {
   static propTypes = {
@@ -96,7 +96,7 @@ class HomePage extends Component {
         </Typography>
         <TopicGrid
           style={{ ...styles.topicGrid, width: topicGridWidth }}
-          topics={sampleTopics}
+          topics={SampleTopics}
           imageStyle={{ height: topicCardImageHeight }}
           childStyle={styles.topicChildStyle}
           cardStyle={{
@@ -128,7 +128,7 @@ class HomePage extends Component {
           dimStyle={{ backgroundColor: 'rgba(44, 56, 126, 0.975)' }}
           style={styles.whyUsBackground}
         />
-        <div style={styles.whyUsContentOverlay}>
+        <div style={styles.WhyUsContentOverlay}>
           <Typography style={styles.whyUsHeading} align="center">
             Why us?
           </Typography>
@@ -138,7 +138,7 @@ class HomePage extends Component {
               height: whyUsGridHeight,
               width: whyUsGridWidth,
             }}
-            data={whyUsContent}
+            data={WhyUsContent}
           />
           <Button
             className={this.props.classes.createButton}
@@ -168,32 +168,6 @@ class HomePage extends Component {
     }
   }
 }
-
-const sampleTopics = [
-  { title: 'AI', image: TopicImage.AI, count: 51 },
-  { title: 'Industry', image: TopicImage.Industry, count: 40 },
-  { title: 'Big Data', image: TopicImage.BigData, count: 39 },
-  { title: 'IoT', image: TopicImage.IOT, count: 36 },
-  { title: 'Non-Profit', image: TopicImage.NonProfit, count: 25 },
-  { title: 'API', image: TopicImage.API, count: 16 },
-  { title: 'Transport', image: TopicImage.Transport, count: 17 },
-  { title: 'Blockchain', image: TopicImage.BlockChain, count: 18 },
-];
-
-const whyUsContent = [
-  {
-    title: 'simple',
-    content: 'Easily view and book an event with fewer steps than ever.',
-  },
-  {
-    title: 'easy',
-    content: 'Fresh and clean design made interactions effortless.',
-  },
-  {
-    title: 'professional',
-    content: 'Hundreds of events from the top companies and organizations.',
-  },
-];
 
 const styles = {
   root: {
@@ -265,7 +239,7 @@ const styles = {
     paddingTop: Layout.padding.page,
     paddingBottom: Layout.padding.page,
   },
-  whyUsContentOverlay: {
+  WhyUsContentOverlay: {
     marginTop: Layout.margin.page,
     marginLeft: 0,
     marginRight: 0,
