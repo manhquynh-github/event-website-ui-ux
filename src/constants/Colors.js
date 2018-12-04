@@ -1,7 +1,7 @@
-export const primaryColor = '#2196F3';
+export const primary = '#2196F3';
 
 export default {
-  primaryColor,
+  primary,
   primaryDark: '#1769aa',
   primaryLight: '#4dabf5',
   white: '#fff',

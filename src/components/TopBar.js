@@ -209,7 +209,7 @@ const styles = (theme) => ({
     color: Colors.black,
   },
   createButton: {
-    backgroundColor: Colors.primaryColor,
+    backgroundColor: Colors.primary,
     color: Colors.white,
     height: 40,
     alignSelf: 'center',

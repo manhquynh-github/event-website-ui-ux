@@ -1,20 +1,12 @@
-import React, { Component } from 'react';
-import {
-  CardContent,
-  CardMedia,
-  Card,
-  CardActionArea,
-  Typography,
-  Grid,
-} from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import AdvancedImage from './AdvancedImage';
+import React, { Component } from 'react';
 import TopicCard from './TopicCard';
 
 class TopicGrid extends Component {
   static propTypes = {
     topics: PropTypes.arrayOf(
-      PropTypes.objectOf({
+      PropTypes.shape({
         title: PropTypes.string.isRequired,
         image: PropTypes.string.isRequired,
         count: PropTypes.number.isRequired,

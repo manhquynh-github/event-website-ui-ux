@@ -12,6 +12,9 @@ import { Typography } from '@material-ui/core';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import AdvancedImage from '../components/AdvancedImage';
+import WhyUsGrid from '../components/WhyUsGrid';
+import { Button } from '@material-ui/core';
+import Add from '@material-ui/icons/Add';
 
 class HomePage extends Component {
   static propTypes = {
@@ -38,12 +41,25 @@ class HomePage extends Component {
   }
 
   render() {
+    return (
+      <div style={styles.root}>
+        <TopBar elevation={this.state.atTop ? 0 : 4} />
+        <main style={styles.content}>
+          {this.renderHotEventCard()}
+          {this.renderTopic()}
+          {this.renderWhyUs()}
+        </main>
+      </div>
+    );
+  }
+
+  renderHotEventCard() {
     const hotEventCardHeight =
       ((this.state.height + Layout.default.offset.y - styles.navBar.height) /
         3) *
       2;
     const hotEventCardImageHeight = hotEventCardHeight - 50;
-    const hotEventCard = (
+    return (
       <EventCard
         elevation={2}
         square
@@ -58,7 +74,9 @@ class HomePage extends Component {
         imageStyle={{ height: hotEventCardImageHeight }}
       />
     );
+  }
 
+  renderTopic() {
     const topicCardHeight =
       (((this.state.height + Layout.default.offset.y) / 3) * 2 - 64 - 32) / 2;
     const topicCardLabelHeight = topicCardHeight / 4 + 8;
@@ -71,7 +89,7 @@ class HomePage extends Component {
         : 1;
     const topicGridWidth =
       topicCardHeight * topicColumns + Layout.margin.large * 3;
-    const topic = (
+    return (
       <div style={styles.topicContainer}>
         <Typography style={styles.topicHeading} align="center">
           Popular Topics
@@ -89,30 +107,46 @@ class HomePage extends Component {
         />
       </div>
     );
+  }
+
+  renderWhyUs() {
+    const whyUsGridWidth = this.state.width - 64 * 2 - 32 * 2;
+    const whyUsColumns = this.state.width >= Layout.breakpoint.lg ? 3 : 1;
+    const whyUsGridHeight =
+      ((whyUsGridWidth - 32 * (whyUsColumns - 1)) / whyUsColumns / 16) *
+        9 *
+        (3 / whyUsColumns) +
+      (-whyUsColumns + 3) * 32;
 
     return (
-      <div style={styles.root}>
-        <TopBar elevation={this.state.atTop ? 0 : 4} />
-        <main style={styles.content}>
-          {hotEventCard}
-          {topic}
-          <div style={styles.whyUsContainer}>
-            <AdvancedImage
-              height={500}
-              src={BackgroundImage.Hackathon}
-              dim
-              showOriginal
-              dimStyle={{ backgroundColor: 'rgba(44, 56, 126, 0.975)' }}
-            />
-            <Typography
-              variant="h4"
-              gutterBottom
-              style={{ color: 'black' }}
-              align="center">
-              Why us
-            </Typography>
-          </div>
-        </main>
+      <div style={styles.whyUsContainer}>
+        <AdvancedImage
+          height="100%"
+          src={BackgroundImage.Hackathon}
+          dim
+          showOriginal
+          dimStyle={{ backgroundColor: 'rgba(44, 56, 126, 0.975)' }}
+          style={styles.whyUsBackground}
+        />
+        <div style={styles.whyUsContentOverlay}>
+          <Typography style={styles.whyUsHeading} align="center">
+            Why us?
+          </Typography>
+          <WhyUsGrid
+            style={{
+              ...styles.whyUsGrid,
+              height: whyUsGridHeight,
+              width: whyUsGridWidth,
+            }}
+            data={whyUsContent}
+          />
+          <Button
+            className={this.props.classes.createButton}
+            variant="contained">
+            <Add />
+            Create an event
+          </Button>
+        </div>
       </div>
     );
   }
@@ -144,6 +178,21 @@ const sampleTopics = [
   { title: 'API', image: TopicImage.API, count: 16 },
   { title: 'Transport', image: TopicImage.Transport, count: 17 },
   { title: 'Blockchain', image: TopicImage.BlockChain, count: 18 },
+];
+
+const whyUsContent = [
+  {
+    title: 'simple',
+    content: 'Easily view and book an event with fewer steps than ever.',
+  },
+  {
+    title: 'easy',
+    content: 'Fresh and clean design made interactions effortless.',
+  },
+  {
+    title: 'professional',
+    content: 'Hundreds of events from the top companies and organizations.',
+  },
 ];
 
 const styles = {
@@ -179,15 +228,20 @@ const styles = {
     paddingBottom: 0,
   },
   topicHeading: {
-    color: Colors.primaryColor,
+    color: Colors.primary,
     fontSize: 36,
     fontWeight: 300,
+    lineHeight: 'normal',
   },
   topicGrid: {
     marginTop: Layout.margin.large,
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
   },
   topicChildStyle: {
     textAlign: 'center',
@@ -198,12 +252,73 @@ const styles = {
     elevation: 6,
     square: true,
   },
+  whyUsHeading: {
+    color: Colors.white,
+    fontSize: 36,
+    fontWeight: 300,
+    lineHeight: 'normal',
+  },
   whyUsContainer: {
+    position: 'relative',
     paddingLeft: Layout.padding.page,
     paddingRight: Layout.padding.page,
     paddingTop: Layout.padding.page,
     paddingBottom: Layout.padding.page,
   },
+  whyUsContentOverlay: {
+    marginTop: Layout.margin.page,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: Layout.margin.page,
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    position: 'relative',
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    overflowWrap: 'break-word',
+    wordBreak: 'break-word',
+  },
+  whyUsGrid: {
+    marginLeft: Layout.padding.large,
+    marginRight: Layout.padding.large,
+    marginTop: 0,
+    marginBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+  },
+  whyUsBackground: {
+    position: 'absolute',
+    top: Layout.margin.page,
+    bottom: Layout.margin.page,
+    right: Layout.margin.page,
+    left: Layout.margin.page,
+  },
+  withStyles: {
+    createButton: {
+      backgroundColor: Colors.primary,
+      color: Colors.white,
+      height: 50,
+      width: 300,
+      fontSize: 30,
+      fontWeight: 300,
+      textTransform: 'none',
+      display: 'flex',
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      marginTop: 32,
+      borderRadius: 0,
+      '&:hover': {
+        backgroundColor: Colors.primaryDark,
+        color: Colors.white,
+      },
+    },
+  },
 };
 
-export default HomePage;
+export default withStyles(styles.withStyles)(HomePage);

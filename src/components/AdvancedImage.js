@@ -19,6 +19,7 @@ class AdvancedImage extends Component {
     dimStyle: PropTypes.object,
     showOriginal: PropTypes.bool,
     originalStyle: PropTypes.object,
+    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -59,7 +60,7 @@ class AdvancedImage extends Component {
       : undefined;
 
     return (
-      <div style={styles.container}>
+      <div style={{ ...styles.container, ...this.props.style }}>
         <div style={backgroundStyle} />
         <div style={mediaStyle} />
         <div style={dimOverlayStyle} />
