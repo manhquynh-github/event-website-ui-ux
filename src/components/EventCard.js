@@ -64,13 +64,11 @@ class EventCard extends Component {
               {...this.props.imageStyle}
             />
             <div style={styles.overlay}>
-              <Typography variant="h3" style={{ color: '#fff' }} gutterBottom>
+              <Typography style={styles.title} gutterBottom>
                 {this.props.title}
               </Typography>
-              <EventChip
-                tags={this.props.tags}
-                style={{ justifyContent: 'center' }}
-              />
+              <EventChip tags={this.props.tags} style={styles.eventChip} />
+              {this.renderEventDetail()}
             </div>
           </div>
         </CardActionArea>
@@ -109,6 +107,48 @@ class EventCard extends Component {
       </Card>
     );
   }
+
+  renderEventDetail() {
+    return (
+      <div style={styles.detailContainer}>
+        <ListItem disableGutters style={styles.detailItem}>
+          <ListItemIcon style={styles.detailIcon}>
+            <LocationOnOutlined />
+          </ListItemIcon>
+          <ListItemText
+            disableGutters
+            disableTypography
+            primary={this.props.location}
+            style={styles.detailText}
+          />
+        </ListItem>
+        <ListItem disableGutters style={styles.detailItem}>
+          <ListItemIcon style={styles.detailIcon}>
+            <CalendarTodayOutlined />
+          </ListItemIcon>
+          <ListItemText
+            disableGutters
+            disableTypography
+            primary={`${this.props.startDate.format(
+              'MMM DD'
+            )} - ${this.props.endDate.format('MMM DD')}`}
+            style={styles.detailText}
+          />
+        </ListItem>
+        <ListItem disableGutters style={styles.detailItem}>
+          <ListItemIcon style={styles.detailIcon}>
+            <AttachMoney />
+          </ListItemIcon>
+          <ListItemText
+            disableGutters
+            disableTypography
+            primary={this.props.prize}
+            style={styles.detailText}
+          />
+        </ListItem>
+      </div>
+    );
+  }
 }
 
 const styles = {
@@ -129,6 +169,58 @@ const styles = {
     transform: 'translate(-50%,-50%)',
     overflowWrap: 'break-word',
     wordBreak: 'break-word',
+  },
+  title: {
+    color: '#fff',
+    fontSize: 36,
+    fontWeight: 400,
+    lineHeight: 'normal',
+  },
+  eventChip: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    marginTop: 16,
+    marginBottom: 0,
+  },
+  detailContainer: {
+    marginTop: 32,
+    marginBottom: 0,
+    // display: 'flex',
+    // flexWrap: 'wrap',
+    display: 'grid',
+    justifyContent: 'center',
+    // alignItem: 'center',
+    flex: 0,
+  },
+  detailItem: {
+    marginTop: 8,
+    marginBottom: 0,
+    marginLeft: 0,
+    marginRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    paddingRight: 0,
+  },
+  detailIcon: {
+    width: 40,
+    height: 40,
+    marginLeft: 0,
+    marginTop: 0,
+    marginRight: 16,
+    color: '#fff',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  detailText: {
+    color: '#fff',
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    fontWeight: 300,
+    lineHeight: 'normal',
+    display: 'inline-block',
   },
 };
 

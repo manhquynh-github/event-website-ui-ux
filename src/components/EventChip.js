@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
 
 class EventChip extends Component {
   static propTypes = {
@@ -23,22 +24,29 @@ class EventChip extends Component {
   renderChips() {
     const { classes } = this.props;
     return this.props.tags.map((e, i) => (
-      <Chip key={`chip-${i}`} label={e} clickable className={classes.chip} />
+      <Chip key={`chip-${i}`} label={e} className={classes.chip} />
     ));
   }
 }
 
 const styles = (theme) => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    marginLeft: -theme.spacing.unit,
-    marginRight: -theme.spacing.unit,
+    marginLeft: -Layout.margin.small,
+    marginRight: -Layout.margin.small,
+    marginTop: 0,
+    marginBottom: 0,
   },
   chip: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginLeft: Layout.margin.small,
+    marginRight: Layout.margin.small,
+    marginTop: 0,
+    marginBottom: 0,
     backgroundColor: Colors.primary,
+    color: '#fff',
+    '&:hover': {
+      backgroundColor: Colors.primaryDark,
+      color: Colors.white,
+    },
   },
 });
 

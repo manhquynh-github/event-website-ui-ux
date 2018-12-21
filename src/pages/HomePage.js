@@ -1,20 +1,19 @@
+import { Button, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import Add from '@material-ui/icons/Add';
 import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import BackgroundImage from '../assets/background';
 import EventImage from '../assets/events';
+import AdvancedImage from '../components/AdvancedImage';
 import EventCard from '../components/EventCard';
 import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
-import { Typography } from '@material-ui/core';
-import Colors from '../constants/Colors';
-import Layout from '../constants/Layout';
-import AdvancedImage from '../components/AdvancedImage';
 import WhyUsGrid from '../components/WhyUsGrid';
-import { Button } from '@material-ui/core';
-import Add from '@material-ui/icons/Add';
+import Colors from '../constants/Colors';
 import { SampleTopics, WhyUsContent } from '../constants/Data';
+import Layout from '../constants/Layout';
 
 class HomePage extends Component {
   static propTypes = {
@@ -68,8 +67,8 @@ class HomePage extends Component {
         tags={['AI', 'Industry']}
         startDate={moment(new Date())}
         endDate={moment(new Date())}
-        location="MUNICH, GERMANY"
-        prize="Prize pool: $10000"
+        location="Munich, Germany"
+        prize="1st Prize €7000"
         image={EventImage.Event1}
         imageStyle={{ height: hotEventCardImageHeight }}
       />
