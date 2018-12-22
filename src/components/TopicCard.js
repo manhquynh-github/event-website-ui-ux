@@ -9,36 +9,29 @@ import {
 import PropTypes from 'prop-types';
 import AdvancedImage from './AdvancedImage';
 import Colors from '../constants/Colors';
+import { withStyles } from '@material-ui/core/styles';
 
 class TopicCard extends Component {
   static propTypes = {
+    classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    imageStyle: PropTypes.object.isRequired,
+    imageProps: PropTypes.object.isRequired,
     style: PropTypes.object,
     url: PropTypes.string,
     count: PropTypes.number,
-    width: PropTypes.number,
-    height: PropTypes.number,
     raised: PropTypes.bool,
     square: PropTypes.bool,
     elevation: PropTypes.number,
   };
 
-  static defaultProps = {
-    raised: undefined,
-    square: undefined,
-    elevation: undefined,
-  };
-
   render() {
+    const { classes } = this.props;
+
     return (
       <Card
-        style={{
-          width: this.props.width,
-          height: this.props.height,
-          ...this.props.style,
-        }}
+        className={this.props.className}
+        style={this.props.style}
         raised={this.props.raised}
         square={this.props.square}
         elevation={this.props.elevation}>
@@ -47,14 +40,14 @@ class TopicCard extends Component {
             blur
             showOriginal
             src={this.props.image}
-            {...this.props.imageStyle}
+            {...this.props.imageProps}
           />
-          <CardContent style={styles.cardContent}>
-            <Typography style={styles.title} align="center">
+          <CardContent className={classes.cardContent}>
+            <Typography className={classes.title} align="center">
               {this.props.title}
             </Typography>
             <Typography
-              style={styles.subTitle}
+              className={classes.subTitle}
               variant="subtitle1"
               align="center">
               {`${this.props.count} events`}
@@ -85,4 +78,4 @@ const styles = {
   },
 };
 
-export default TopicCard;
+export default withStyles(styles)(TopicCard);

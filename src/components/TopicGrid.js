@@ -2,6 +2,7 @@ import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TopicCard from './TopicCard';
+import classNames from 'classnames';
 
 class TopicGrid extends Component {
   static propTypes = {
@@ -13,15 +14,19 @@ class TopicGrid extends Component {
         url: PropTypes.string,
       }).isRequired
     ).isRequired,
-    childStyle: PropTypes.object,
-    imageStyle: PropTypes.object,
-    cardStyle: PropTypes.object,
-    style: PropTypes.object,
+    imageProps: PropTypes.object,
+    cardProps: PropTypes.object,
   };
 
   render() {
+    const { imageProps, cardProps } = this.props;
+
     return (
-      <Grid style={this.props.style} container spacing={32}>
+      <Grid
+        className={this.props.className}
+        style={this.props.style}
+        container
+        spacing={32}>
         {this.props.topics.map((e, i) => (
           <Grid key={`topic-${i}`} item xs={12} sm={6} lg={3}>
             <TopicCard
@@ -29,9 +34,8 @@ class TopicGrid extends Component {
               image={e.image}
               url={e.url}
               count={e.count}
-              style={this.props.childStyle}
-              imageStyle={this.props.imageStyle}
-              {...this.props.cardStyle}
+              imageProps={imageProps}
+              {...cardProps}
             />
           </Grid>
         ))}
@@ -39,7 +43,5 @@ class TopicGrid extends Component {
     );
   }
 }
-
-const styles = {};
 
 export default TopicGrid;

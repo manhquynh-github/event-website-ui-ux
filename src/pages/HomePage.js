@@ -40,10 +40,12 @@ class HomePage extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div style={styles.root}>
+      <div className={classes.root}>
         <TopBar elevation={this.state.atTop ? 0 : 4} />
-        <main style={styles.content}>
+        <main className={classes.content}>
           {this.renderHotEventCard()}
           {this.renderTopic()}
           {this.renderWhyUs()}
@@ -53,6 +55,7 @@ class HomePage extends Component {
   }
 
   renderHotEventCard() {
+    const { classes } = this.props;
     const hotEventCardHeight =
       ((this.state.height + Layout.default.offset.y - styles.navBar.height) /
         3) *
@@ -62,7 +65,8 @@ class HomePage extends Component {
       <EventCard
         elevation={2}
         square
-        style={{ ...styles.hotEventCard, height: hotEventCardHeight }}
+        className={classes.hotEventCard}
+        style={{ height: hotEventCardHeight }}
         title="Linde.Intel.AI.Challenge"
         tags={['AI', 'Industry']}
         startDate={moment(new Date())}
@@ -70,12 +74,13 @@ class HomePage extends Component {
         location="Munich, Germany"
         prize="1st Prize €7000"
         image={EventImage.Event1}
-        imageStyle={{ height: hotEventCardImageHeight }}
+        imageProps={{ height: hotEventCardImageHeight }}
       />
     );
   }
 
   renderTopic() {
+    const { classes } = this.props;
     const topicCardHeight =
       (((this.state.height + Layout.default.offset.y) / 3) * 2 - 64 - 32) / 2;
     const topicCardLabelHeight = topicCardHeight / 4 + 8;
@@ -89,19 +94,23 @@ class HomePage extends Component {
     const topicGridWidth =
       topicCardHeight * topicColumns + Layout.margin.large * 3;
     return (
-      <div style={styles.topicContainer}>
-        <Typography style={styles.topicHeading} align="center">
+      <div className={classes.topicContainer}>
+        <Typography className={classes.topicHeading} align="center">
           Popular Topics
         </Typography>
         <TopicGrid
-          style={{ ...styles.topicGrid, width: topicGridWidth }}
+          className={classes.topicGrid}
+          style={{ width: topicGridWidth }}
           topics={SampleTopics}
-          imageStyle={{ height: topicCardImageHeight }}
-          childStyle={styles.topicChildStyle}
-          cardStyle={{
-            ...styles.topicCardStyle,
-            height: topicCardHeight,
-            width: topicCardHeight,
+          imageProps={{ height: topicCardImageHeight }}
+          cardProps={{
+            className: classes.topicCard,
+            elevation: 6,
+            square: true,
+            style: {
+              height: topicCardHeight,
+              width: topicCardHeight,
+            },
           }}
         />
       </div>
@@ -109,6 +118,7 @@ class HomePage extends Component {
   }
 
   renderWhyUs() {
+    const { classes } = this.props;
     const whyUsGridWidth = this.state.width - 64 * 2 - 32 * 2;
     const whyUsColumns = this.state.width >= Layout.breakpoint.lg ? 3 : 1;
     const whyUsGridHeight =
@@ -118,30 +128,28 @@ class HomePage extends Component {
       (-whyUsColumns + 3) * 32;
 
     return (
-      <div style={styles.whyUsContainer}>
+      <div className={classes.whyUsContainer}>
         <AdvancedImage
           height="100%"
           src={BackgroundImage.Hackathon}
           dim
           showOriginal
           dimStyle={{ backgroundColor: 'rgba(44, 56, 126, 0.975)' }}
-          style={styles.whyUsBackground}
+          className={classes.whyUsBackground}
         />
-        <div style={styles.WhyUsContentOverlay}>
-          <Typography style={styles.whyUsHeading} align="center">
+        <div className={classes.whyUsContentOverlay}>
+          <Typography className={classes.whyUsHeading} align="center">
             Why us?
           </Typography>
           <WhyUsGrid
+            className={classes.whyUsGrid}
             style={{
-              ...styles.whyUsGrid,
               height: whyUsGridHeight,
               width: whyUsGridWidth,
             }}
             data={WhyUsContent}
           />
-          <Button
-            className={this.props.classes.createButton}
-            variant="contained">
+          <Button className={classes.createButton} variant="contained">
             <Add />
             Create an event
           </Button>
@@ -216,14 +224,10 @@ const styles = {
     paddingTop: 0,
     paddingBottom: 0,
   },
-  topicChildStyle: {
+  topicCard: {
     textAlign: 'center',
     marginLeft: 'auto',
     marginRight: 'auto',
-  },
-  topicCardStyle: {
-    elevation: 6,
-    square: true,
   },
   whyUsHeading: {
     color: Colors.white,
@@ -238,7 +242,7 @@ const styles = {
     paddingTop: Layout.padding.page,
     paddingBottom: Layout.padding.page,
   },
-  WhyUsContentOverlay: {
+  whyUsContentOverlay: {
     marginTop: Layout.margin.page,
     marginLeft: 0,
     marginRight: 0,
@@ -272,26 +276,24 @@ const styles = {
     right: Layout.margin.page,
     left: Layout.margin.page,
   },
-  withStyles: {
-    createButton: {
-      backgroundColor: Colors.primary,
+  createButton: {
+    backgroundColor: Colors.primary,
+    color: Colors.white,
+    height: 50,
+    width: 300,
+    fontSize: 30,
+    fontWeight: 300,
+    textTransform: 'none',
+    display: 'flex',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    marginTop: 32,
+    borderRadius: 0,
+    '&:hover': {
+      backgroundColor: Colors.primaryDark,
       color: Colors.white,
-      height: 50,
-      width: 300,
-      fontSize: 30,
-      fontWeight: 300,
-      textTransform: 'none',
-      display: 'flex',
-      marginLeft: 'auto',
-      marginRight: 'auto',
-      marginTop: 32,
-      borderRadius: 0,
-      '&:hover': {
-        backgroundColor: Colors.primaryDark,
-        color: Colors.white,
-      },
     },
   },
 };
 
-export default withStyles(styles.withStyles)(HomePage);
+export default withStyles(styles)(HomePage);

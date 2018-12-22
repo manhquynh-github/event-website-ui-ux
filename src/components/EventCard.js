@@ -18,9 +18,11 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import AdvancedImage from './AdvancedImage';
 import EventChip from './EventChip';
+import { withStyles } from '@material-ui/core/styles';
 
 class EventCard extends Component {
   static propTypes = {
+    classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     location: PropTypes.string.isRequired,
@@ -29,42 +31,32 @@ class EventCard extends Component {
     link: PropTypes.string.isRequired,
     tags: PropTypes.arrayOf(PropTypes.string),
     prize: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number,
-    style: PropTypes.object,
-    imageStyle: PropTypes.object,
+    imageProps: PropTypes.object,
     raised: PropTypes.bool,
     square: PropTypes.bool,
     elevation: PropTypes.number,
   };
 
-  static defaultProps = {
-    raised: undefined,
-    square: undefined,
-    elevation: undefined,
-  };
-
   render() {
+    const { classes } = this.props;
+
     return (
       <Card
-        style={{
-          width: this.props.width,
-          height: this.props.height,
-          ...this.props.style,
-        }}
+        className={this.props.className}
+        style={this.props.style}
         raised={this.props.raised}
         square={this.props.square}
         elevation={this.props.elevation}>
         <CardActionArea>
-          <div style={styles.imageContainer}>
+          <div className={classes.imageContainer}>
             <AdvancedImage
               blur
               dim
               src={this.props.image}
-              {...this.props.imageStyle}
+              {...this.props.imageProps}
             />
-            <div style={styles.overlay}>
-              <Typography style={styles.title} gutterBottom>
+            <div className={classes.overlay}>
+              <Typography className={classes.title} gutterBottom>
                 {this.props.title}
               </Typography>
               <EventChip tags={this.props.tags} style={styles.eventChip} />
@@ -224,4 +216,4 @@ const styles = {
   },
 };
 
-export default EventCard;
+export default withStyles(styles)(EventCard);

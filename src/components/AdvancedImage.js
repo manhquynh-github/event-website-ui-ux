@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 
 class AdvancedImage extends Component {
   static propTypes = {
@@ -19,7 +21,6 @@ class AdvancedImage extends Component {
     dimStyle: PropTypes.object,
     showOriginal: PropTypes.bool,
     originalStyle: PropTypes.object,
-    style: PropTypes.object,
   };
 
   static defaultProps = {
@@ -33,10 +34,10 @@ class AdvancedImage extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     const orientedStyle = this.getOrientedStyle();
 
     const backgroundStyle = {
-      ...styles.background,
       ...orientedStyle,
       backgroundImage: `url('${this.props.src}')`,
       filter: `blur(${this.props.blur ? this.props.radius : 0}px)`,
@@ -44,7 +45,6 @@ class AdvancedImage extends Component {
 
     const dimOverlayStyle = this.props.dim
       ? {
-          ...styles.dimOverlay,
           ...orientedStyle,
           ...this.props.dimStyle,
         }
@@ -52,7 +52,6 @@ class AdvancedImage extends Component {
 
     const mediaStyle = this.props.showOriginal
       ? {
-          ...styles.media,
           ...orientedStyle,
           backgroundImage: `url('${this.props.src}')`,
           ...this.props.originalStyle,
@@ -60,10 +59,12 @@ class AdvancedImage extends Component {
       : undefined;
 
     return (
-      <div style={{ ...styles.container, ...this.props.style }}>
-        <div style={backgroundStyle} />
-        <div style={mediaStyle} />
-        <div style={dimOverlayStyle} />
+      <div
+        className={classNames(classes.container, this.props.className)}
+        style={this.props.style}>
+        <div className={classes.background} style={backgroundStyle} />
+        <div className={classes.media} style={mediaStyle} />
+        <div className={classes.dimOverlay} style={dimOverlayStyle} />
       </div>
     );
   }
@@ -103,4 +104,4 @@ const styles = {
   },
 };
 
-export default AdvancedImage;
+export default withStyles(styles)(AdvancedImage);
