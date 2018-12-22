@@ -24,7 +24,12 @@ class EventChip extends Component {
   renderChips() {
     const { classes } = this.props;
     return this.props.tags.map((e, i) => (
-      <Chip key={`chip-${i}`} label={e} className={classes.chip} />
+      <Chip
+        key={`chip-${i}`}
+        label={e}
+        color="primary"
+        className={classes.chip}
+      />
     ));
   }
 }
@@ -41,10 +46,11 @@ const styles = {
     marginRight: Layout.margin.small,
     marginTop: 0,
     marginBottom: 0,
-    backgroundColor: Colors.primary,
     '&:hover': {
       backgroundColor: Colors.primaryDark,
     },
+    height: 30,
+    fontSize: 18,
   },
 };
 

@@ -35,7 +35,7 @@ class TopicCard extends Component {
         raised={this.props.raised}
         square={this.props.square}
         elevation={this.props.elevation}>
-        <CardActionArea>
+        <CardActionArea className={classes.cardActionArea}>
           <AdvancedImage
             blur
             showOriginal
@@ -60,6 +60,10 @@ class TopicCard extends Component {
 }
 
 const styles = {
+  cardActionArea: {
+    width: '100%',
+    height: '100%',
+  },
   cardContent: {
     padding: 0,
   },
