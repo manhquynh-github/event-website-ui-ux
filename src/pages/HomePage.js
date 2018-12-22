@@ -105,8 +105,6 @@ class HomePage extends Component {
           imageProps={{ height: topicCardImageHeight }}
           cardProps={{
             className: classes.topicCard,
-            elevation: 6,
-            square: true,
             style: {
               height: topicCardHeight,
               width: topicCardHeight,

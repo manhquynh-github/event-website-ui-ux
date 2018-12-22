@@ -13,9 +13,11 @@ class EventChip extends Component {
   };
 
   render() {
-    const { classes, className, style } = this.props;
+    const { classes } = this.props;
     return (
-      <div className={classNames(classes.root, className)} style={style}>
+      <div
+        className={classNames(classes.root, this.props.className)}
+        style={this.props.style}>
         {this.renderChips()}
       </div>
     );

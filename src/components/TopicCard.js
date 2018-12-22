@@ -10,6 +10,8 @@ import PropTypes from 'prop-types';
 import AdvancedImage from './AdvancedImage';
 import Colors from '../constants/Colors';
 import { withStyles } from '@material-ui/core/styles';
+import shadows from '@material-ui/core/styles/shadows';
+import classNames from 'classnames';
 
 class TopicCard extends Component {
   static propTypes = {
@@ -20,21 +22,35 @@ class TopicCard extends Component {
     style: PropTypes.object,
     url: PropTypes.string,
     count: PropTypes.number,
-    raised: PropTypes.bool,
-    square: PropTypes.bool,
-    elevation: PropTypes.number,
   };
+
+  constructor() {
+    super();
+    this.state = {
+      isMouseOver: false,
+    };
+
+    this.getShadowStyle = this.getShadowStyle.bind(this);
+  }
+
+  getShadowStyle() {
+    if (this.state.isMouseOver) {
+      return '0px 4px 12px rgba(33, 150, 243, 0.75)';
+    } else {
+      return '0px 4px 8px rgba(0, 0, 0, 0.25)';
+    }
+  }
 
   render() {
     const { classes } = this.props;
 
     return (
       <Card
-        className={this.props.className}
-        style={this.props.style}
-        raised={this.props.raised}
-        square={this.props.square}
-        elevation={this.props.elevation}>
+        classes={this.props.className}
+        square
+        style={{ boxShadow: this.getShadowStyle(), ...this.props.style }}
+        onMouseOver={() => this.setState({ isMouseOver: true })}
+        onMouseLeave={() => this.setState({ isMouseOver: false })}>
         <CardActionArea className={classes.cardActionArea}>
           <AdvancedImage
             blur
