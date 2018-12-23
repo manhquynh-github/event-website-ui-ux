@@ -5,10 +5,6 @@ import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Colors from './constants/Colors';
 
 class App extends Component {
-  static propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-
   render() {
     return (
       <MuiThemeProvider theme={theme}>

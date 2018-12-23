@@ -12,7 +12,7 @@ import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
 import WhyUsGrid from '../components/WhyUsGrid';
 import Colors from '../constants/Colors';
-import { SampleTopics, WhyUsContent } from '../constants/Data';
+import { SampleHotEvents, SampleTopics, WhyUsContent } from '../constants/Data';
 import Layout from '../constants/Layout';
 
 class HomePage extends Component {
@@ -63,17 +63,9 @@ class HomePage extends Component {
     const hotEventCardImageHeight = hotEventCardHeight - 50;
     return (
       <HotEventCard
-        elevation={2}
-        square
         className={classes.hotEventCard}
         style={{ height: hotEventCardHeight }}
-        title="Linde.Intel.AI.Challenge"
-        tags={['AI', 'Industry']}
-        startDate={moment(new Date())}
-        endDate={moment(new Date())}
-        location="Munich, Germany"
-        prize="1st Prize €7000"
-        image={EventImage.Event1}
+        hotEvents={SampleHotEvents}
         imageProps={{ height: hotEventCardImageHeight }}
       />
     );

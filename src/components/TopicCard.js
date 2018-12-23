@@ -12,16 +12,14 @@ import Colors from '../constants/Colors';
 import { withStyles } from '@material-ui/core/styles';
 import shadows from '@material-ui/core/styles/shadows';
 import classNames from 'classnames';
+import { strictProps as TopicProps } from '../models/Topic';
 
 class TopicCard extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    imageProps: PropTypes.object.isRequired,
-    style: PropTypes.object,
-    url: PropTypes.string,
-    count: PropTypes.number,
+    ...TopicProps,
+    image: PropTypes.string,
+    imageProps: PropTypes.object,
   };
 
   render() {
@@ -43,10 +41,7 @@ class TopicCard extends Component {
             <Typography className={classes.title} align="center">
               {this.props.title}
             </Typography>
-            <Typography
-              className={classes.subTitle}
-              variant="subtitle1"
-              align="center">
+            <Typography className={classes.subTitle} align="center">
               {`${this.props.count} events`}
             </Typography>
           </CardContent>

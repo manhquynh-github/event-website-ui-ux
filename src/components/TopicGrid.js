@@ -3,17 +3,12 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import TopicCard from './TopicCard';
 import classNames from 'classnames';
+import { strictProps as TopicProps } from '../models/Topic';
 
 class TopicGrid extends Component {
   static propTypes = {
-    topics: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        image: PropTypes.string.isRequired,
-        count: PropTypes.number.isRequired,
-        url: PropTypes.string,
-      }).isRequired
-    ).isRequired,
+    topics: PropTypes.arrayOf(PropTypes.shape(TopicProps).isRequired)
+      .isRequired,
     imageProps: PropTypes.object,
     cardProps: PropTypes.object,
   };

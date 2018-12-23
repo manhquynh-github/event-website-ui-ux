@@ -21,23 +21,30 @@ import EventChip from './EventChip';
 import { withStyles } from '@material-ui/core/styles';
 import Colors from '../constants/Colors';
 import classNames from 'classnames';
+import { strictProps as EventProps } from '../models/Event';
 
 class HotEventCard extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
-    location: PropTypes.string.isRequired,
-    startDate: PropTypes.instanceOf(moment).isRequired,
-    endDate: PropTypes.instanceOf(moment).isRequired,
-    link: PropTypes.string.isRequired,
-    tags: PropTypes.arrayOf(PropTypes.string),
-    prize: PropTypes.string,
+    hotEvents: PropTypes.arrayOf(PropTypes.shape(EventProps)).isRequired,
     imageProps: PropTypes.object,
+    selectedIndex: PropTypes.number,
   };
+
+  static defaultProps = {
+    selectedIndex: 1,
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedIndex: props.selectedIndex,
+    };
+  }
 
   render() {
     const { classes } = this.props;
+    const event = this.props.hotEvents[this.state.selectedIndex];
 
     return (
       <Card
@@ -49,14 +56,14 @@ class HotEventCard extends Component {
             <AdvancedImage
               blur
               dim
-              src={this.props.image}
+              src={event.image}
               {...this.props.imageProps}
             />
             <div className={classes.overlay}>
               <Typography className={classes.title} gutterBottom>
-                {this.props.title}
+                {event.title}
               </Typography>
-              <EventChip tags={this.props.tags} className={classes.eventChip} />
+              <EventChip tags={event.tags} className={classes.eventChip} />
               {this.renderEventDetail()}
             </div>
           </div>
@@ -70,6 +77,7 @@ class HotEventCard extends Component {
 
   renderEventDetail() {
     const { classes } = this.props;
+    const event = this.props.hotEvents[this.state.selectedIndex];
 
     return (
       <div className={classes.detailContainer}>
@@ -79,7 +87,7 @@ class HotEventCard extends Component {
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={this.props.location}
+            primary={event.location}
             className={classes.detailText}
           />
         </ListItem>
@@ -89,9 +97,9 @@ class HotEventCard extends Component {
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={`${this.props.startDate.format(
+            primary={`${event.startDate.format(
               'MMM DD'
-            )} - ${this.props.endDate.format('MMM DD')}`}
+            )} - ${event.endDate.format('MMM DD')}`}
             className={classes.detailText}
           />
         </ListItem>
@@ -101,7 +109,7 @@ class HotEventCard extends Component {
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={this.props.prize}
+            primary={event.prize}
             className={classes.detailText}
           />
         </ListItem>
@@ -119,33 +127,17 @@ class HotEventCard extends Component {
         spacing={0}
         justify="center"
         alignItems="stretch">
-        <Grid item xs={12} md={4}>
-          <ListItem disableGutters button className={classes.otherEventItem}>
-            <ListItemText
-              disableTypography
-              className={classes.otherEventTitle}
-              primary={this.props.title}
-            />
-          </ListItem>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <ListItem disableGutters button className={classes.otherEventItem}>
-            <ListItemText
-              disableTypography
-              className={classes.otherEventTitle}
-              primary={this.props.title}
-            />
-          </ListItem>
-        </Grid>
-        <Grid item xs={12} md={4}>
-          <ListItem disableGutters button className={classes.otherEventItem}>
-            <ListItemText
-              disableTypography
-              className={classes.otherEventTitle}
-              primary={this.props.title}
-            />
-          </ListItem>
-        </Grid>
+        {this.props.hotEvents.map((e, i) => (
+          <Grid key={`hot-event-${i}`} item xs={12} md={4}>
+            <ListItem disableGutters button className={classes.otherEventItem}>
+              <ListItemText
+                disableTypography
+                className={classes.otherEventTitle}
+                primary={e.title}
+              />
+            </ListItem>
+          </Grid>
+        ))}
       </Grid>
     );
   }

@@ -1,4 +1,36 @@
 import TopicImage from '../assets/topics';
+import moment from 'moment';
+import EventImage from '../assets/events';
+
+export const SampleHotEvents = [
+  {
+    title: 'Linde.Intel.AI.Challenge',
+    tags: ['AI', 'Industry'],
+    startDate: moment(new Date()),
+    endDate: moment(new Date()),
+    location: 'Munich, Germany',
+    prize: '1st Prize €7000',
+    image: EventImage.Event1,
+  },
+  {
+    title: 'Linde.Intel.AI.Challenge',
+    tags: ['AI', 'Industry'],
+    startDate: moment(new Date()),
+    endDate: moment(new Date()),
+    location: 'Munich, Germany',
+    prize: '1st Prize €7000',
+    image: EventImage.Event1,
+  },
+  {
+    title: 'Linde.Intel.AI.Challenge',
+    tags: ['AI', 'Industry'],
+    startDate: moment(new Date()),
+    endDate: moment(new Date()),
+    location: 'Munich, Germany',
+    prize: '1st Prize €7000',
+    image: EventImage.Event1,
+  },
+];
 
 export const SampleTopics = [
   { title: 'AI', image: TopicImage.AI, count: 51 },
