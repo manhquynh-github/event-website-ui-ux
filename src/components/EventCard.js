@@ -19,6 +19,7 @@ import React, { Component } from 'react';
 import AdvancedImage from './AdvancedImage';
 import EventChip from './EventChip';
 import { withStyles } from '@material-ui/core/styles';
+import Colors from '../constants/Colors';
 
 class EventCard extends Component {
   static propTypes = {
@@ -59,96 +60,104 @@ class EventCard extends Component {
               <Typography className={classes.title} gutterBottom>
                 {this.props.title}
               </Typography>
-              <EventChip tags={this.props.tags} style={styles.eventChip} />
+              <EventChip tags={this.props.tags} className={classes.eventChip} />
               {this.renderEventDetail()}
             </div>
           </div>
         </CardActionArea>
-        <CardContent style={styles.cardContent}>
-          <Grid container justify="space-evenly">
-            <Grid item xs={12} md={3}>
-              <ListItem disableGutters button style={styles.item}>
-                <ListItemIcon>
-                  <LocationOnOutlined />
-                </ListItemIcon>
-                <ListItemText primary={this.props.location} />
-              </ListItem>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <ListItem disableGutters button style={styles.item}>
-                <ListItemIcon>
-                  <CalendarTodayOutlined />
-                </ListItemIcon>
-                <ListItemText
-                  primary={`${this.props.startDate.format(
-                    'MMM DD'
-                  )} - ${this.props.endDate.format('MMM DD')}`}
-                />
-              </ListItem>
-            </Grid>
-            <Grid item xs={12} md={3}>
-              <ListItem disableGutters button style={styles.item}>
-                <ListItemIcon>
-                  <AttachMoney />
-                </ListItemIcon>
-                <ListItemText primary={this.props.prize} />
-              </ListItem>
-            </Grid>
-          </Grid>
+        <CardContent className={classes.cardContent}>
+          {this.renderOtherEvents()}
         </CardContent>
       </Card>
     );
   }
 
   renderEventDetail() {
+    const { classes } = this.props;
+
     return (
-      <div style={styles.detailContainer}>
-        <ListItem disableGutters style={styles.detailItem}>
-          <ListItemIcon style={styles.detailIcon}>
+      <div className={classes.detailContainer}>
+        <ListItem disableGutters className={classes.detailItem}>
+          <ListItemIcon className={classes.detailIcon}>
             <LocationOnOutlined />
           </ListItemIcon>
           <ListItemText
-            disableGutters
             disableTypography
             primary={this.props.location}
-            style={styles.detailText}
+            className={classes.detailText}
           />
         </ListItem>
-        <ListItem disableGutters style={styles.detailItem}>
-          <ListItemIcon style={styles.detailIcon}>
+        <ListItem disableGutters className={classes.detailItem}>
+          <ListItemIcon className={classes.detailIcon}>
             <CalendarTodayOutlined />
           </ListItemIcon>
           <ListItemText
-            disableGutters
             disableTypography
             primary={`${this.props.startDate.format(
               'MMM DD'
             )} - ${this.props.endDate.format('MMM DD')}`}
-            style={styles.detailText}
+            className={classes.detailText}
           />
         </ListItem>
-        <ListItem disableGutters style={styles.detailItem}>
-          <ListItemIcon style={styles.detailIcon}>
+        <ListItem disableGutters className={classes.detailItem}>
+          <ListItemIcon className={classes.detailIcon}>
             <AttachMoney />
           </ListItemIcon>
           <ListItemText
-            disableGutters
             disableTypography
             primary={this.props.prize}
-            style={styles.detailText}
+            className={classes.detailText}
           />
         </ListItem>
       </div>
     );
   }
+
+  renderOtherEvents() {
+    const { classes } = this.props;
+
+    return (
+      <Grid
+        className={classes.otherEventGrid}
+        container
+        spacing={0}
+        justify="center"
+        alignItems="stretch">
+        <Grid item xs={12} md={4}>
+          <ListItem disableGutters button className={classes.otherEventItem}>
+            <ListItemText
+              disableTypography
+              className={classes.otherEventTitle}
+              primary={this.props.title}
+            />
+          </ListItem>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <ListItem disableGutters button className={classes.otherEventItem}>
+            <ListItemText
+              disableTypography
+              className={classes.otherEventTitle}
+              primary={this.props.title}
+            />
+          </ListItem>
+        </Grid>
+        <Grid item xs={12} md={4}>
+          <ListItem disableGutters button className={classes.otherEventItem}>
+            <ListItemText
+              disableTypography
+              className={classes.otherEventTitle}
+              primary={this.props.title}
+            />
+          </ListItem>
+        </Grid>
+      </Grid>
+    );
+  }
 }
 
-const styles = {
+const styles = (theme) => ({
   cardContent: {
     padding: 0,
-  },
-  item: {
-    padding: 16,
   },
   imageContainer: {
     position: 'relative',
@@ -201,19 +210,46 @@ const styles = {
     marginLeft: 0,
     marginTop: 0,
     marginRight: 16,
-    color: '#fff',
+    color: Colors.white,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   },
   detailText: {
-    color: '#fff',
+    paddingLeft: 0,
+    paddingRight: 0,
+    paddingTop: 0,
+    paddingBottom: 0,
+    color: Colors.white,
     fontFamily: 'Roboto',
     fontSize: 24,
     fontWeight: 300,
     lineHeight: 'normal',
-    display: 'inline-block',
   },
-};
+  otherEventGrid: {
+    height: 50,
+    [theme.breakpoints.down('md')]: {
+      height: 150,
+    },
+  },
+  otherEventItem: {
+    paddingLeft: 16,
+    paddingRight: 16,
+    paddingTop: 0,
+    paddingBottom: 0,
+    margin: 0,
+    height: '100%',
+  },
+  otherEventTitle: {
+    padding: 0,
+    margin: 0,
+    color: Colors.black,
+    fontFamily: 'Roboto',
+    fontSize: 24,
+    fontWeight: 300,
+    lineHeight: 'normal',
+    textAlign: 'center',
+  },
+});
 
 export default withStyles(styles)(EventCard);
