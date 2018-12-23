@@ -20,8 +20,9 @@ import AdvancedImage from './AdvancedImage';
 import EventChip from './EventChip';
 import { withStyles } from '@material-ui/core/styles';
 import Colors from '../constants/Colors';
+import classNames from 'classnames';
 
-class EventCard extends Component {
+class HotEventCard extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
     title: PropTypes.string.isRequired,
@@ -33,9 +34,6 @@ class EventCard extends Component {
     tags: PropTypes.arrayOf(PropTypes.string),
     prize: PropTypes.string,
     imageProps: PropTypes.object,
-    raised: PropTypes.bool,
-    square: PropTypes.bool,
-    elevation: PropTypes.number,
   };
 
   render() {
@@ -43,11 +41,9 @@ class EventCard extends Component {
 
     return (
       <Card
-        className={this.props.className}
+        className={classNames(classes.card, this.props.className)}
         style={this.props.style}
-        raised={this.props.raised}
-        square={this.props.square}
-        elevation={this.props.elevation}>
+        square>
         <CardActionArea>
           <div className={classes.imageContainer}>
             <AdvancedImage
@@ -156,6 +152,9 @@ class EventCard extends Component {
 }
 
 const styles = (theme) => ({
+  card: {
+    boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+  },
   cardContent: {
     padding: 0,
   },
@@ -252,4 +251,4 @@ const styles = (theme) => ({
   },
 });
 
-export default withStyles(styles)(EventCard);
+export default withStyles(styles)(HotEventCard);

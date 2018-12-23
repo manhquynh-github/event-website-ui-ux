@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 import BackgroundImage from '../assets/background';
 import EventImage from '../assets/events';
 import AdvancedImage from '../components/AdvancedImage';
-import EventCard from '../components/EventCard';
+import HotEventCard from '../components/HotEventCard';
 import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
 import WhyUsGrid from '../components/WhyUsGrid';
@@ -62,7 +62,7 @@ class HomePage extends Component {
       2;
     const hotEventCardImageHeight = hotEventCardHeight - 50;
     return (
-      <EventCard
+      <HotEventCard
         elevation={2}
         square
         className={classes.hotEventCard}
