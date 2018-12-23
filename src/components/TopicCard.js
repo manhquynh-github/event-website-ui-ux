@@ -24,33 +24,14 @@ class TopicCard extends Component {
     count: PropTypes.number,
   };
 
-  constructor() {
-    super();
-    this.state = {
-      isMouseOver: false,
-    };
-
-    this.getShadowStyle = this.getShadowStyle.bind(this);
-  }
-
-  getShadowStyle() {
-    if (this.state.isMouseOver) {
-      return '0px 4px 12px rgba(33, 150, 243, 0.75)';
-    } else {
-      return '0px 4px 8px rgba(0, 0, 0, 0.25)';
-    }
-  }
-
   render() {
     const { classes } = this.props;
 
     return (
       <Card
-        classes={this.props.className}
+        className={classNames(classes.card, this.props.className)}
         square
-        style={{ boxShadow: this.getShadowStyle(), ...this.props.style }}
-        onMouseOver={() => this.setState({ isMouseOver: true })}
-        onMouseLeave={() => this.setState({ isMouseOver: false })}>
+        style={this.props.style}>
         <CardActionArea className={classes.cardActionArea}>
           <AdvancedImage
             blur
@@ -76,6 +57,12 @@ class TopicCard extends Component {
 }
 
 const styles = {
+  card: {
+    boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.25)',
+    '&:hover': {
+      boxShadow: '0px 4px 12px rgba(33, 150, 243, 0.75)',
+    },
+  },
   cardActionArea: {
     width: '100%',
     height: '100%',
