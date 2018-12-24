@@ -28,6 +28,7 @@ import {
   ArrowBackIosOutlined,
   ArrowForwardIosOutlined,
 } from '@material-ui/icons';
+import SwipeButton from './SwipeButton';
 
 class HotEventCard extends Component {
   static propTypes = {
@@ -72,30 +73,21 @@ class HotEventCard extends Component {
               <EventChip tags={event.tags} className={classes.eventChip} />
               {this.renderEventDetail()}
             </div>
-            <div className={classes.buttonOverlay}>
-              <Button
-                variant="contained"
-                className={classes.button}
-                onClick={() =>
-                  this.setState((previousState) => ({
-                    selectedIndex: (previousState.selectedIndex - 1 + 3) % 3,
-                  }))
-                }>
-                <ArrowBackIosOutlined />
-              </Button>
-            </div>
-            <div style={{ right: '0%' }} className={classes.buttonOverlay}>
-              <Button
-                variant="contained"
-                className={classes.button}
-                onClick={() =>
-                  this.setState((previousState) => ({
-                    selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
-                  }))
-                }>
-                <ArrowForwardIosOutlined />
-              </Button>
-            </div>
+            <SwipeButton
+              back
+              onClick={() =>
+                this.setState((previousState) => ({
+                  selectedIndex: (previousState.selectedIndex - 1 + 3) % 3,
+                }))
+              }
+            />
+            <SwipeButton
+              onClick={() =>
+                this.setState((previousState) => ({
+                  selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
+                }))
+              }
+            />
           </div>
         </CardActionArea>
         <CardContent className={classes.cardContent}>
