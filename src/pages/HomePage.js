@@ -12,7 +12,7 @@ import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
 import WhyUsGrid from '../components/WhyUsGrid';
 import Colors from '../constants/Colors';
-import { SampleHotEvents, SampleTopics, WhyUsContent } from '../constants/Data';
+import { SampleHotEvents, SampleTopics, WhyUsContent } from '../data/Data';
 import Layout from '../constants/Layout';
 
 class HomePage extends Component {

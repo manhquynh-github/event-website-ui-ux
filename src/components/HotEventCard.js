@@ -19,6 +19,7 @@ import React, { Component } from 'react';
 import AdvancedImage from './AdvancedImage';
 import EventChip from './EventChip';
 import { withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import Colors from '../constants/Colors';
 import classNames from 'classnames';
 import { strictProps as EventProps } from '../models/Event';
@@ -51,7 +52,7 @@ class HotEventCard extends Component {
         className={classNames(classes.card, this.props.className)}
         style={this.props.style}
         square>
-        <CardActionArea>
+        <CardActionArea className={classes.cardActionArea}>
           <div className={classes.imageContainer}>
             <AdvancedImage
               blur
@@ -75,9 +76,23 @@ class HotEventCard extends Component {
     );
   }
 
+  componentDidUpdate() {
+    clearTimeout(this.timeOut);
+    this.timeOut = setTimeout(() => {
+      this.setState((previousState) => ({
+        selectedIndex: (previousState.selectedIndex + 1) % 3,
+      }));
+    }, 6000);
+  }
+
   renderEventDetail() {
     const { classes } = this.props;
     const event = this.props.hotEvents[this.state.selectedIndex];
+    const formattedLocation = event.location
+      .toLowerCase()
+      .split(' ')
+      .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+      .join(' ');
 
     return (
       <div className={classes.detailContainer}>
@@ -87,7 +102,7 @@ class HotEventCard extends Component {
           </ListItemIcon>
           <ListItemText
             disableTypography
-            primary={event.location}
+            primary={formattedLocation}
             className={classes.detailText}
           />
         </ListItem>
@@ -159,12 +174,15 @@ const styles = (theme) => ({
   card: {
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
   },
+  cardActionArea: {
+    color: fade(Colors.black, 0.5),
+  },
   cardContent: {
     padding: 0,
   },
   imageContainer: {
     position: 'relative',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: fade(Colors.black, 0.5),
   },
   overlay: {
     position: 'absolute',
@@ -175,10 +193,11 @@ const styles = (theme) => ({
     wordBreak: 'break-word',
   },
   title: {
-    color: '#fff',
+    color: Colors.white,
     fontSize: 36,
     fontWeight: 400,
     lineHeight: 'normal',
+    textAlign: 'center',
   },
   eventChip: {
     display: 'flex',
@@ -242,11 +261,14 @@ const styles = (theme) => ({
     paddingBottom: 0,
     margin: 0,
     height: '100%',
+    //color: fade(Colors.black, 0.5),
     '&$otherEventSelectedItem': {
       backgroundColor: Colors.primary,
+      boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
     },
     '&$otherEventSelectedItem:hover': {
       backgroundColor: Colors.primaryDark,
+      boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
     },
   },
   otherEventSelectedItem: {},
