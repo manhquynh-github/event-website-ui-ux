@@ -7,6 +7,7 @@ import {
   ListItemIcon,
   ListItemText,
   Typography,
+  Button,
 } from '@material-ui/core';
 import {
   AttachMoney,
@@ -23,6 +24,10 @@ import { fade } from '@material-ui/core/styles/colorManipulator';
 import Colors from '../constants/Colors';
 import classNames from 'classnames';
 import { strictProps as EventProps } from '../models/Event';
+import {
+  ArrowBackIosOutlined,
+  ArrowForwardIosOutlined,
+} from '@material-ui/icons';
 
 class HotEventCard extends Component {
   static propTypes = {
@@ -52,7 +57,7 @@ class HotEventCard extends Component {
         className={classNames(classes.card, this.props.className)}
         style={this.props.style}
         square>
-        <CardActionArea className={classes.cardActionArea}>
+        <CardActionArea disableRipple className={classes.cardActionArea}>
           <div className={classes.imageContainer}>
             <AdvancedImage
               blur
@@ -67,6 +72,30 @@ class HotEventCard extends Component {
               <EventChip tags={event.tags} className={classes.eventChip} />
               {this.renderEventDetail()}
             </div>
+            <div className={classes.buttonOverlay}>
+              <Button
+                variant="contained"
+                className={classes.button}
+                onClick={() =>
+                  this.setState((previousState) => ({
+                    selectedIndex: (previousState.selectedIndex - 1 + 3) % 3,
+                  }))
+                }>
+                <ArrowBackIosOutlined />
+              </Button>
+            </div>
+            <div style={{ right: '0%' }} className={classes.buttonOverlay}>
+              <Button
+                variant="contained"
+                className={classes.button}
+                onClick={() =>
+                  this.setState((previousState) => ({
+                    selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
+                  }))
+                }>
+                <ArrowForwardIosOutlined />
+              </Button>
+            </div>
           </div>
         </CardActionArea>
         <CardContent className={classes.cardContent}>
@@ -80,7 +109,7 @@ class HotEventCard extends Component {
     clearTimeout(this.timeOut);
     this.timeOut = setTimeout(() => {
       this.setState((previousState) => ({
-        selectedIndex: (previousState.selectedIndex + 1) % 3,
+        selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
       }));
     }, 6000);
   }
@@ -283,6 +312,30 @@ const styles = (theme) => ({
     fontWeight: 300,
     lineHeight: 'normal',
     textAlign: 'center',
+  },
+  buttonOverlay: {
+    position: 'absolute',
+    top: '50%',
+    transform: 'translate(0%,-50%)',
+    overflowWrap: 'break-word',
+    wordBreak: 'break-word',
+  },
+  button: {
+    minWidth: 0,
+    minHeight: 0,
+    width: 40,
+    height: 40,
+    borderRadius: 45,
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    backgroundColor: fade(Colors.black, 0.5),
+    color: Colors.white,
+    '&:hover': {
+      boxShadow: '0px 0px 12px rgba(33, 150, 243, 0.75)',
+      backgroundColor: Colors.black,
+    },
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
 });
 
