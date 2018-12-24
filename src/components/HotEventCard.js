@@ -32,7 +32,7 @@ class HotEventCard extends Component {
   };
 
   static defaultProps = {
-    selectedIndex: 1,
+    selectedIndex: 0,
   };
 
   constructor(props) {
@@ -129,8 +129,19 @@ class HotEventCard extends Component {
         alignItems="stretch">
         {this.props.hotEvents.map((e, i) => (
           <Grid key={`hot-event-${i}`} item xs={12} md={4}>
-            <ListItem disableGutters button className={classes.otherEventItem}>
+            <ListItem
+              selected={this.state.selectedIndex == i}
+              disableGutters
+              button
+              classes={{
+                root: classes.otherEventItem,
+                selected: classes.otherEventSelectedItem,
+              }}>
               <ListItemText
+                style={{
+                  color:
+                    this.state.selectedIndex == i ? Colors.white : Colors.black,
+                }}
                 disableTypography
                 className={classes.otherEventTitle}
                 primary={e.title}
@@ -230,11 +241,17 @@ const styles = (theme) => ({
     paddingBottom: 0,
     margin: 0,
     height: '100%',
+    '&$otherEventSelectedItem': {
+      backgroundColor: Colors.primary,
+    },
+    '&$otherEventSelectedItem:hover': {
+      backgroundColor: Colors.primaryDark,
+    },
   },
+  otherEventSelectedItem: {},
   otherEventTitle: {
     padding: 0,
     margin: 0,
-    color: Colors.black,
     fontFamily: 'Roboto',
     fontSize: 24,
     fontWeight: 300,

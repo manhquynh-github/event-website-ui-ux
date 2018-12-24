@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import HomePage from './pages/HomePage';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
 import Colors from './constants/Colors';
+import Demo from './Demo';
 
 class App extends Component {
   render() {
