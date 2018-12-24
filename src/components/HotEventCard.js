@@ -270,6 +270,9 @@ const styles = (theme) => ({
       backgroundColor: Colors.primaryDark,
       boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
     },
+    transition: theme.transitions.create(['background-color', 'box-shadow'], {
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   otherEventSelectedItem: {},
   otherEventTitle: {

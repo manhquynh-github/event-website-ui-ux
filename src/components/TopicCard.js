@@ -51,12 +51,15 @@ class TopicCard extends Component {
   }
 }
 
-const styles = {
+const styles = (theme) => ({
   card: {
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.25)',
     '&:hover': {
       boxShadow: '0px 4px 12px rgba(33, 150, 243, 0.75)',
     },
+    transition: theme.transitions.create(['box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   cardActionArea: {
     color: 'rgba(0,0,0,0.5)',
@@ -79,6 +82,6 @@ const styles = {
     marginBottom: 4,
     lineHeight: 'normal',
   },
-};
+});
 
 export default withStyles(styles)(TopicCard);
