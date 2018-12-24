@@ -46,9 +46,11 @@ class HomePage extends Component {
       <div className={classes.root}>
         <TopBar elevation={this.state.atTop ? 0 : 4} />
         <main className={classes.content}>
-          {this.renderHotEventCard()}
-          {this.renderTopic()}
-          {this.renderWhyUs()}
+          <div className={classes.paddedContainer}>
+            {this.renderHotEventCard()}
+            {this.renderTopic()}
+            {this.renderWhyUs()}
+          </div>
         </main>
       </div>
     );
@@ -57,7 +59,7 @@ class HomePage extends Component {
   renderHotEventCard() {
     const { classes } = this.props;
     const hotEventCardHeight =
-      ((this.state.height + Layout.default.offset.y - styles.navBar.height) /
+      ((this.state.height + Layout.default.offset.y - Layout.navBar.height) /
         3) *
       2;
     const hotEventCardImageHeight = hotEventCardHeight - 50;
@@ -109,14 +111,19 @@ class HomePage extends Component {
 
   renderWhyUs() {
     const { classes } = this.props;
-    const whyUsGridWidth = this.state.width - 64 * 2 - 32 * 2;
+    const whyUsGridWidth =
+      this.state.width >= Layout.breakpoint.lg
+        ? this.state.width - 64 * 2 - 32 * 2
+        : this.state.width;
     const whyUsColumns = this.state.width >= Layout.breakpoint.lg ? 3 : 1;
     const whyUsGridHeight =
-      ((whyUsGridWidth - 32 * (whyUsColumns - 1)) / whyUsColumns / 16) *
-        9 *
-        (3 / whyUsColumns) +
-      (-whyUsColumns + 3) * 32;
-
+      this.state.width >= Layout.breakpoint.lg
+        ? ((whyUsGridWidth - 32 * (whyUsColumns - 1)) / whyUsColumns / 16) * 9
+        : ((this.state.height +
+            Layout.default.offset.y -
+            Layout.navBar.height) /
+            3) *
+          3;
     return (
       <div className={classes.whyUsContainer}>
         <AdvancedImage
@@ -166,16 +173,13 @@ class HomePage extends Component {
   }
 }
 
-const styles = {
+const styles = (theme) => ({
   root: {
     flexGrow: 1,
     zIndex: 1,
     overflow: 'hidden',
     position: 'relative',
     display: 'flex',
-  },
-  navBar: {
-    height: 50,
   },
   content: {
     flexGrow: 1,
@@ -184,19 +188,16 @@ const styles = {
     minHeight: 300,
   },
   hotEventCard: {
-    marginLeft: Layout.spacing.page,
-    marginRight: Layout.spacing.page,
     marginTop: 50 + Layout.spacing.medium,
   },
   paddedContainer: {
-    paddingLeft: Layout.spacing.page,
-    paddingRight: Layout.spacing.page,
+    [theme.breakpoints.up('lg')]: {
+      paddingLeft: Layout.spacing.page,
+      paddingRight: Layout.spacing.page,
+    },
   },
   topicContainer: {
-    paddingLeft: Layout.spacing.page,
-    paddingRight: Layout.spacing.page,
     paddingTop: Layout.spacing.page,
-    paddingBottom: 0,
   },
   topicHeading: {
     color: Colors.primary,
@@ -209,10 +210,6 @@ const styles = {
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingTop: 0,
-    paddingBottom: 0,
   },
   topicCard: {
     textAlign: 'center',
@@ -227,8 +224,6 @@ const styles = {
   },
   whyUsContainer: {
     position: 'relative',
-    paddingLeft: Layout.spacing.page,
-    paddingRight: Layout.spacing.page,
     paddingTop: Layout.spacing.page,
     paddingBottom: Layout.spacing.page,
   },
@@ -237,10 +232,6 @@ const styles = {
     marginLeft: 0,
     marginRight: 0,
     marginBottom: Layout.spacing.page,
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingTop: 0,
-    paddingBottom: 0,
     position: 'relative',
     left: 0,
     top: 0,
@@ -250,21 +241,18 @@ const styles = {
     wordBreak: 'break-word',
   },
   whyUsGrid: {
-    marginLeft: Layout.spacing.large,
-    marginRight: Layout.spacing.large,
-    marginTop: 0,
-    marginBottom: 0,
-    paddingLeft: 0,
-    paddingRight: 0,
-    paddingTop: 0,
-    paddingBottom: 0,
+    margin: 'auto',
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: Layout.spacing.large,
+      marginRight: Layout.spacing.large,
+    },
   },
   whyUsBackground: {
     position: 'absolute',
     top: Layout.spacing.page,
     bottom: Layout.spacing.page,
-    right: Layout.spacing.page,
-    left: Layout.spacing.page,
+    right: 0,
+    left: 0,
   },
   createButton: {
     backgroundColor: Colors.primary,
@@ -285,6 +273,6 @@ const styles = {
       color: Colors.white,
     },
   },
-};
+});
 
 export default withStyles(styles)(HomePage);

@@ -23,4 +23,7 @@ export default {
     lg: 1280,
     xl: 1920,
   },
+  navBar: {
+    height: 50,
+  },
 };

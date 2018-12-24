@@ -32,11 +32,12 @@ class WhyUsGrid extends Component {
         spacing={32}>
         {this.props.data.map((e, i) => (
           <Grid
-            key={`reason-${i}`}
             item
-            sm={12}
-            lg={4}
-            className={classes.itemContainer}>
+            key={`reason-${i}`}
+            className={classes.itemContainer}
+            justify="center"
+            xs={12}
+            lg={4}>
             <div className={classes.contentContainer}>
               <Typography className={classes.title} align="center">
                 {e.title}
@@ -52,7 +53,7 @@ class WhyUsGrid extends Component {
   }
 }
 
-const styles = {
+const styles = (theme) => ({
   title: {
     color: Colors.white,
     fontSize: 30,
@@ -66,15 +67,22 @@ const styles = {
     lineHeight: 'normal',
   },
   contentContainer: {
-    marginLeft: Layout.spacing.large,
-    marginRight: Layout.spacing.large,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginLeft: Layout.spacing.medium,
+    marginRight: Layout.spacing.medium,
     marginTop: 'auto',
     marginBottom: 'auto',
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: Layout.spacing.large,
+      marginRight: Layout.spacing.large,
+    },
   },
   itemContainer: {
-    padding: 0,
+    padding: '0px !important',
     display: 'inherit',
   },
-};
+});
 
 export default withStyles(styles)(WhyUsGrid);
