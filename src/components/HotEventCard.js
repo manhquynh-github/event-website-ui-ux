@@ -130,6 +130,7 @@ class HotEventCard extends Component {
         {this.props.hotEvents.map((e, i) => (
           <Grid key={`hot-event-${i}`} item xs={12} md={4}>
             <ListItem
+              onClick={() => this.setState({ selectedIndex: i })}
               selected={this.state.selectedIndex == i}
               disableGutters
               button

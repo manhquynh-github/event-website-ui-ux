@@ -56,10 +56,10 @@ const styles = {
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.25)',
     '&:hover': {
       boxShadow: '0px 4px 12px rgba(33, 150, 243, 0.75)',
-      backgroundColor: Colors.white,
     },
   },
   cardActionArea: {
+    color: 'rgba(0,0,0,0.5)',
     width: '100%',
     height: '100%',
   },
