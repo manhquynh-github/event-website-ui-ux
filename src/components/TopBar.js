@@ -147,8 +147,8 @@ const styles = (theme) => ({
     zIndex: theme.zIndex.drawer + 1,
     float: 'top',
     height: 50,
-    paddingLeft: Layout.padding.page,
-    paddingRight: Layout.padding.page,
+    paddingLeft: Layout.spacing.page,
+    paddingRight: Layout.spacing.page,
   },
   toolbar: {
     minHeight: 0,

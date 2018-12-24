@@ -84,7 +84,7 @@ class HomePage extends Component {
         ? 2
         : 1;
     const topicGridWidth =
-      topicCardHeight * topicColumns + Layout.margin.large * 3;
+      topicCardHeight * topicColumns + Layout.spacing.large * 3;
     return (
       <div className={classes.topicContainer}>
         <Typography className={classes.topicHeading} align="center">
@@ -184,18 +184,18 @@ const styles = {
     minHeight: 300,
   },
   hotEventCard: {
-    marginLeft: Layout.margin.page,
-    marginRight: Layout.margin.page,
-    marginTop: 50 + Layout.margin.medium,
+    marginLeft: Layout.spacing.page,
+    marginRight: Layout.spacing.page,
+    marginTop: 50 + Layout.spacing.medium,
   },
   paddedContainer: {
-    paddingLeft: Layout.padding.page,
-    paddingRight: Layout.padding.page,
+    paddingLeft: Layout.spacing.page,
+    paddingRight: Layout.spacing.page,
   },
   topicContainer: {
-    paddingLeft: Layout.padding.page,
-    paddingRight: Layout.padding.page,
-    paddingTop: Layout.padding.page,
+    paddingLeft: Layout.spacing.page,
+    paddingRight: Layout.spacing.page,
+    paddingTop: Layout.spacing.page,
     paddingBottom: 0,
   },
   topicHeading: {
@@ -205,7 +205,7 @@ const styles = {
     lineHeight: 'normal',
   },
   topicGrid: {
-    marginTop: Layout.margin.large,
+    marginTop: Layout.spacing.large,
     marginLeft: 'auto',
     marginRight: 'auto',
     marginBottom: 0,
@@ -227,16 +227,16 @@ const styles = {
   },
   whyUsContainer: {
     position: 'relative',
-    paddingLeft: Layout.padding.page,
-    paddingRight: Layout.padding.page,
-    paddingTop: Layout.padding.page,
-    paddingBottom: Layout.padding.page,
+    paddingLeft: Layout.spacing.page,
+    paddingRight: Layout.spacing.page,
+    paddingTop: Layout.spacing.page,
+    paddingBottom: Layout.spacing.page,
   },
   whyUsContentOverlay: {
-    marginTop: Layout.margin.page,
+    marginTop: Layout.spacing.page,
     marginLeft: 0,
     marginRight: 0,
-    marginBottom: Layout.margin.page,
+    marginBottom: Layout.spacing.page,
     paddingLeft: 0,
     paddingRight: 0,
     paddingTop: 0,
@@ -250,8 +250,8 @@ const styles = {
     wordBreak: 'break-word',
   },
   whyUsGrid: {
-    marginLeft: Layout.padding.large,
-    marginRight: Layout.padding.large,
+    marginLeft: Layout.spacing.large,
+    marginRight: Layout.spacing.large,
     marginTop: 0,
     marginBottom: 0,
     paddingLeft: 0,
@@ -261,10 +261,10 @@ const styles = {
   },
   whyUsBackground: {
     position: 'absolute',
-    top: Layout.margin.page,
-    bottom: Layout.margin.page,
-    right: Layout.margin.page,
-    left: Layout.margin.page,
+    top: Layout.spacing.page,
+    bottom: Layout.spacing.page,
+    right: Layout.spacing.page,
+    left: Layout.spacing.page,
   },
   createButton: {
     backgroundColor: Colors.primary,

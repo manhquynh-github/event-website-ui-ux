@@ -10,15 +10,6 @@ export default {
   },
   spacing: {
     unit: 8,
-  },
-  padding: {
-    page: 64,
-    tight: 4,
-    small: 8,
-    medium: 16,
-    large: 32,
-  },
-  margin: {
     page: 64,
     tight: 4,
     small: 8,

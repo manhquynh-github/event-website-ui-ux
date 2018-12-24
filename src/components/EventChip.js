@@ -38,14 +38,14 @@ class EventChip extends Component {
 
 const styles = {
   root: {
-    marginLeft: -Layout.margin.small,
-    marginRight: -Layout.margin.small,
+    marginLeft: -Layout.spacing.small,
+    marginRight: -Layout.spacing.small,
     marginTop: 0,
     marginBottom: 0,
   },
   chip: {
-    marginLeft: Layout.margin.small,
-    marginRight: Layout.margin.small,
+    marginLeft: Layout.spacing.small,
+    marginRight: Layout.spacing.small,
     marginTop: 0,
     marginBottom: 0,
     '&:hover': {

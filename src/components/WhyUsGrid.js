@@ -66,8 +66,8 @@ const styles = {
     lineHeight: 'normal',
   },
   contentContainer: {
-    marginLeft: Layout.margin.large,
-    marginRight: Layout.margin.large,
+    marginLeft: Layout.spacing.large,
+    marginRight: Layout.spacing.large,
     marginTop: 'auto',
     marginBottom: 'auto',
   },
