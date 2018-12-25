@@ -8,6 +8,7 @@ import {
   ListItemText,
   Typography,
   Button,
+  List,
 } from '@material-ui/core';
 import {
   AttachMoney,
@@ -29,6 +30,7 @@ import {
   ArrowForwardIosOutlined,
 } from '@material-ui/icons';
 import SwipeButton from './SwipeButton';
+import Layout from '../constants/Layout';
 
 class HotEventCard extends Component {
   static propTypes = {
@@ -67,7 +69,7 @@ class HotEventCard extends Component {
               {...this.props.imageProps}
             />
             <div className={classes.overlay}>
-              <Typography className={classes.title} gutterBottom>
+              <Typography className={classes.title} gutterBottom noWrap>
                 {event.title}
               </Typography>
               <EventChip tags={event.tags} className={classes.eventChip} />
@@ -103,7 +105,7 @@ class HotEventCard extends Component {
       this.setState((previousState) => ({
         selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
       }));
-    }, 6000);
+    }, 600000);
   }
 
   renderEventDetail() {
@@ -116,40 +118,37 @@ class HotEventCard extends Component {
       .join(' ');
 
     return (
-      <div className={classes.detailContainer}>
-        <ListItem disableGutters className={classes.detailItem}>
-          <ListItemIcon className={classes.detailIcon}>
-            <LocationOnOutlined />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={formattedLocation}
-            className={classes.detailText}
-          />
-        </ListItem>
-        <ListItem disableGutters className={classes.detailItem}>
-          <ListItemIcon className={classes.detailIcon}>
-            <CalendarTodayOutlined />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={`${event.startDate.format(
-              'MMM DD'
-            )} - ${event.endDate.format('MMM DD')}`}
-            className={classes.detailText}
-          />
-        </ListItem>
-        <ListItem disableGutters className={classes.detailItem}>
-          <ListItemIcon className={classes.detailIcon}>
-            <AttachMoney />
-          </ListItemIcon>
-          <ListItemText
-            disableTypography
-            primary={event.prize}
-            className={classes.detailText}
-          />
-        </ListItem>
-      </div>
+      <Grid container justify="center">
+        <Grid item className={classes.detailGrid}>
+          <List disablePadding className={classes.detailList}>
+            <ListItem disableGutters className={classes.detailItem}>
+              <ListItemIcon className={classes.detailIcon}>
+                <LocationOnOutlined />
+              </ListItemIcon>
+              <Typography noWrap className={classes.detailText}>
+                {formattedLocation}
+              </Typography>
+            </ListItem>
+            <ListItem disableGutters className={classes.detailItem}>
+              <ListItemIcon className={classes.detailIcon}>
+                <CalendarTodayOutlined />
+              </ListItemIcon>
+              <Typography
+                className={classes.detailText}>{`${event.startDate.format(
+                'MMM DD'
+              )} - ${event.endDate.format('MMM DD')}`}</Typography>
+            </ListItem>
+            <ListItem disableGutters className={classes.detailItem}>
+              <ListItemIcon className={classes.detailIcon}>
+                <AttachMoney />
+              </ListItemIcon>
+              <Typography className={classes.detailText}>
+                {event.prize}
+              </Typography>
+            </ListItem>
+          </List>
+        </Grid>
+      </Grid>
     );
   }
 
@@ -206,6 +205,7 @@ const styles = (theme) => ({
     backgroundColor: fade(Colors.black, 0.5),
   },
   overlay: {
+    width: '100%',
     position: 'absolute',
     left: '50%',
     top: '50%',
@@ -214,6 +214,8 @@ const styles = (theme) => ({
     wordBreak: 'break-word',
   },
   title: {
+    marginLeft: Layout.spacing.medium,
+    marginRight: Layout.spacing.medium,
     color: Colors.white,
     fontSize: 36,
     fontWeight: 400,
@@ -222,20 +224,22 @@ const styles = (theme) => ({
   },
   eventChip: {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    marginTop: 16,
+    overflow: 'scroll',
+    marginTop: Layout.spacing.medium,
     marginBottom: 0,
+    marginLeft: Layout.spacing.medium,
+    marginRight: Layout.spacing.medium,
+    justifyContent: 'center',
   },
-  detailContainer: {
-    marginTop: 32,
+  detailGrid: {
+    maxWidth: '100%',
+    flexBasis: 'auto',
+  },
+  detailList: {
+    marginTop: Layout.spacing.large,
     marginBottom: 0,
-    // display: 'flex',
-    // flexWrap: 'wrap',
-    display: 'grid',
-    justifyContent: 'center',
-    // alignItem: 'center',
-    flex: 0,
+    marginLeft: Layout.spacing.large,
+    marginRight: Layout.spacing.large,
   },
   detailItem: {
     marginTop: 8,
@@ -309,8 +313,6 @@ const styles = (theme) => ({
     position: 'absolute',
     top: '50%',
     transform: 'translate(0%,-50%)',
-    overflowWrap: 'break-word',
-    wordBreak: 'break-word',
   },
   button: {
     minWidth: 0,

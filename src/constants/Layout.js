@@ -7,6 +7,10 @@ export default {
     offset: {
       y: 111,
     },
+    iPhone5: {
+      width: 320,
+      height: 568,
+    },
   },
   spacing: {
     unit: 8,

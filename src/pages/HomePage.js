@@ -121,7 +121,8 @@ class HomePage extends Component {
         ? ((whyUsGridWidth - 32 * (whyUsColumns - 1)) / whyUsColumns / 16) * 9
         : ((this.state.height +
             Layout.default.offset.y -
-            Layout.navBar.height) /
+            Layout.navBar.height -
+            64 * 2) /
             3) *
           3;
     return (
@@ -189,6 +190,8 @@ const styles = (theme) => ({
   },
   hotEventCard: {
     marginTop: 50 + Layout.spacing.medium,
+    minWidth: Layout.default.iPhone5.width,
+    maxWidth: '100%',
   },
   paddedContainer: {
     [theme.breakpoints.up('lg')]: {
