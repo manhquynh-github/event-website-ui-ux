@@ -107,7 +107,7 @@ class HotEventCard extends Component {
       this.setState((previousState) => ({
         selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
       }));
-    }, 6000);
+    }, 600000);
   }
 
   renderEventDetail() {
@@ -165,7 +165,7 @@ class HotEventCard extends Component {
         justify="center"
         alignItems="stretch">
         {this.props.hotEvents.map((e, i) => (
-          <Grid key={`hot-event-${i}`} item xs={12} md={4}>
+          <Grid key={`hot-event-${i}`} item xs={4}>
             <ListItem
               onClick={() => this.setState({ selectedIndex: i })}
               selected={this.state.selectedIndex == i}
@@ -175,15 +175,16 @@ class HotEventCard extends Component {
                 root: classes.otherEventItem,
                 selected: classes.otherEventSelectedItem,
               }}>
-              <ListItemText
+              <Typography
+                noWrap
+                align="center"
                 style={{
                   color:
                     this.state.selectedIndex == i ? Colors.white : Colors.black,
                 }}
-                disableTypography
-                className={classes.otherEventTitle}
-                primary={e.title}
-              />
+                className={classes.otherEventTitle}>
+                {e.title}
+              </Typography>
             </ListItem>
           </Grid>
         ))}
@@ -283,9 +284,9 @@ const styles = (theme) => ({
   },
   otherEventGrid: {
     height: 50,
-    [theme.breakpoints.down('md')]: {
-      height: 150,
-    },
+    // [theme.breakpoints.down('md')]: {
+    //   height: 150,
+    // },
   },
   otherEventItem: {
     paddingLeft: 16,
@@ -310,12 +311,10 @@ const styles = (theme) => ({
   otherEventSelectedItem: {},
   otherEventTitle: {
     padding: 0,
-    margin: 0,
-    fontFamily: 'Roboto',
+    margin: 'auto',
     fontSize: 24,
     fontWeight: 300,
     lineHeight: 'normal',
-    textAlign: 'center',
   },
   buttonOverlay: {
     position: 'absolute',
