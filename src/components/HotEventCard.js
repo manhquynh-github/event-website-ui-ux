@@ -107,7 +107,7 @@ class HotEventCard extends Component {
       this.setState((previousState) => ({
         selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
       }));
-    }, 600000);
+    }, 6000);
   }
 
   renderEventDetail() {
