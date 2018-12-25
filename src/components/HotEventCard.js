@@ -72,7 +72,9 @@ class HotEventCard extends Component {
               <Typography className={classes.title} gutterBottom noWrap>
                 {event.title}
               </Typography>
-              <EventChip tags={event.tags} className={classes.eventChip} />
+              <div className={classes.eventChipContainer}>
+                <EventChip tags={event.tags} className={classes.eventChip} />
+              </div>
               {this.renderEventDetail()}
             </div>
             <SwipeButton
@@ -222,14 +224,20 @@ const styles = (theme) => ({
     lineHeight: 'normal',
     textAlign: 'center',
   },
+  eventChipContainer: {
+    display: 'flex',
+    overflow: 'auto',
+    marginTop: Layout.spacing.medium,
+    marginLeft: 0,
+    marginRight: 0,
+    marginBottom: 0,
+    paddingLeft: Layout.spacing.medium,
+    paddingRight: Layout.spacing.medium,
+  },
   eventChip: {
     display: 'flex',
-    overflow: 'scroll',
-    marginTop: Layout.spacing.medium,
-    marginBottom: 0,
-    marginLeft: Layout.spacing.medium,
-    marginRight: Layout.spacing.medium,
-    justifyContent: 'center',
+    margin: 'auto',
+    paddingRight: Layout.spacing.medium,
   },
   detailGrid: {
     maxWidth: '100%',
