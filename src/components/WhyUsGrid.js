@@ -29,7 +29,8 @@ class WhyUsGrid extends Component {
         className={this.props.className}
         style={this.props.style}
         container
-        spacing={32}>
+        spacing={32}
+        justify="center">
         {this.props.data.map((e, i) => (
           <Grid
             item

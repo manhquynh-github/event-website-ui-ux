@@ -109,14 +109,16 @@ class HomePage extends Component {
           <Typography className={classes.whyUsHeading} align="center">
             Why us?
           </Typography>
-          <WhyUsGrid
-            className={classes.whyUsGrid}
-            style={{
-              height: whyUsGridHeight,
-              width: whyUsGridWidth,
-            }}
-            data={WhyUsContent}
-          />
+          <div className={classes.whyUsGridContainer}>
+            <WhyUsGrid
+              className={classes.whyUsGrid}
+              style={{
+                height: whyUsGridHeight,
+                width: whyUsGridWidth,
+              }}
+              data={WhyUsContent}
+            />
+          </div>
           <Button className={classes.createButton} variant="contained">
             <Add />
             Create an event
@@ -166,13 +168,13 @@ class HomePage extends Component {
         xs: 1,
       }),
 
-      // (height=width * columns) + (32 * (columns - 1))
+      // (height=width * columns) + (32 * columns)
       get topicGridWidth() {
         const topicColumns = this.topicColumns;
 
         return (
           this.topicCardHeight * topicColumns +
-          Layout.spacing.large * (topicColumns - 1)
+          Layout.spacing.large * topicColumns
         );
       },
 
@@ -195,9 +197,9 @@ class HomePage extends Component {
         const whyUsColumns = this.whyUsColumns;
 
         return ref.breakpoints({
-          // (width - (32 * (columns - 1))) / columns /16*9
+          // (width - (32 * columns))) / columns /16*9
           lg:
-            ((this.whyUsGridWidth - Layout.spacing.large * (whyUsColumns - 1)) /
+            ((this.whyUsGridWidth - Layout.spacing.large * whyUsColumns) /
               whyUsColumns /
               16) *
             9,
@@ -290,12 +292,15 @@ const styles = (theme) => ({
     overflowWrap: 'break-word',
     wordBreak: 'break-word',
   },
-  whyUsGrid: {
+  whyUsGridContainer: {
     margin: 'auto',
     [theme.breakpoints.up('lg')]: {
       marginLeft: Layout.spacing.large,
       marginRight: Layout.spacing.large,
     },
+  },
+  whyUsGrid: {
+    margin: 'auto',
   },
   whyUsBackground: {
     position: 'absolute',
