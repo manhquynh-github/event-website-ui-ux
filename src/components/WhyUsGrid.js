@@ -29,14 +29,12 @@ class WhyUsGrid extends Component {
         className={this.props.className}
         style={this.props.style}
         container
-        spacing={32}
-        justify="center">
+        spacing={32}>
         {this.props.data.map((e, i) => (
           <Grid
             item
             key={`reason-${i}`}
             className={classes.itemContainer}
-            justify="center"
             xs={12}
             lg={4}>
             <div className={classes.contentContainer}>
@@ -79,8 +77,8 @@ const styles = (theme) => ({
     },
   },
   itemContainer: {
-    padding: '0px !important',
     display: 'inherit',
+    justifyContent: 'center',
   },
 });
 

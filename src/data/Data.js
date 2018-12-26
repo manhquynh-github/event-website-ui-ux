@@ -11,6 +11,7 @@ export const SampleHotEvents = [
     location: 'Munich, Germany',
     prize: '1st Prize €7000',
     image: EventImage.Event1,
+    link: '#',
   },
   {
     title: 'BE5 HACKDAYS',
@@ -20,6 +21,7 @@ export const SampleHotEvents = [
     location: 'GARCHING BEI MUNCHEN, GERMANY',
     prize: '1st Prize €7000',
     image: EventImage.Event2,
+    link: '#',
   },
   {
     title: 'Blockchain Connect Conference',
@@ -29,18 +31,19 @@ export const SampleHotEvents = [
     location: 'Mission St, San Francisco',
     prize: '~',
     image: EventImage.Event3,
+    link: '#',
   },
 ];
 
 export const SampleTopics = [
-  { title: 'AI', image: TopicImage.AI, count: 51 },
-  { title: 'Industry', image: TopicImage.Industry, count: 40 },
-  { title: 'Big Data', image: TopicImage.BigData, count: 39 },
-  { title: 'IoT', image: TopicImage.IOT, count: 36 },
-  { title: 'Non-Profit', image: TopicImage.NonProfit, count: 25 },
-  { title: 'API', image: TopicImage.API, count: 16 },
-  { title: 'Transport', image: TopicImage.Transport, count: 17 },
-  { title: 'Blockchain', image: TopicImage.BlockChain, count: 18 },
+  { title: 'AI', image: TopicImage.AI, count: 51, url: '#' },
+  { title: 'Industry', image: TopicImage.Industry, count: 40, url: '#' },
+  { title: 'Big Data', image: TopicImage.BigData, count: 39, url: '#' },
+  { title: 'IoT', image: TopicImage.IOT, count: 36, url: '#' },
+  { title: 'Non-Profit', image: TopicImage.NonProfit, count: 25, url: '#' },
+  { title: 'API', image: TopicImage.API, count: 16, url: '#' },
+  { title: 'Transport', image: TopicImage.Transport, count: 17, url: '#' },
+  { title: 'Blockchain', image: TopicImage.BlockChain, count: 18, url: '#' },
 ];
 
 export const WhyUsContent = [

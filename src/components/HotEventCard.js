@@ -161,7 +161,7 @@ class HotEventCard extends Component {
           <Grid key={`hot-event-${i}`} item xs={4}>
             <ListItem
               onClick={() => this.setState({ selectedIndex: i })}
-              selected={this.state.selectedIndex == i}
+              selected={this.state.selectedIndex === i}
               disableGutters
               button
               classes={{
@@ -173,7 +173,9 @@ class HotEventCard extends Component {
                 align="center"
                 style={{
                   color:
-                    this.state.selectedIndex == i ? Colors.white : Colors.black,
+                    this.state.selectedIndex === i
+                      ? Colors.white
+                      : Colors.black,
                 }}
                 className={classes.otherEventTitle}>
                 {e.title}

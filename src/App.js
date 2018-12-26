@@ -1,8 +1,7 @@
-import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import HomePage from './pages/HomePage';
 import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/styles';
+import React, { Component } from 'react';
 import Colors from './constants/Colors';
+import HomePage from './pages/HomePage';
 
 class App extends Component {
   render() {
