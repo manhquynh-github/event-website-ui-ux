@@ -42,12 +42,12 @@ class ResizeListener extends Component {
   breakpoints(object) {
     let result = undefined;
 
-    Object.keys(Layout.breakpoint)
+    Object.keys(Layout.breakpoints)
       .reverse()
       .some((e) => {
         if (
           object.hasOwnProperty(e) &&
-          this.dimensions.width >= Layout.breakpoint[e]
+          this.dimensions.width >= Layout.breakpoints[e]
         ) {
           result = object[e];
           return true;

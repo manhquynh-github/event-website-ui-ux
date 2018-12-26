@@ -5,6 +5,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -60,7 +61,7 @@ const styles = (theme) => ({
     }),
   },
   cardActionArea: {
-    color: 'rgba(0,0,0,0.5)',
+    color: fade(Colors.black, 0.5),
     width: '100%',
     height: '100%',
   },

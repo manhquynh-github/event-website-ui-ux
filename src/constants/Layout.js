@@ -20,7 +20,7 @@ export default {
     medium: 16,
     large: 32,
   },
-  breakpoint: {
+  breakpoints: {
     xs: 0,
     sm: 600,
     md: 960,
