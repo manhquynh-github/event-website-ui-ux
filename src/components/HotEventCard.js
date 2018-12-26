@@ -227,7 +227,7 @@ const styles = (theme) => ({
   eventChipContainer: {
     display: 'flex',
     overflow: 'auto',
-    marginTop: Layout.spacing.medium,
+    marginTop: Layout.spacing.small,
     marginLeft: 0,
     marginRight: 0,
     marginBottom: 0,

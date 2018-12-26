@@ -143,6 +143,7 @@ const styles = (theme) => ({
     marginTop: Layout.spacing.medium,
   },
   contactGrid: {
+    marginTop: 0,
     [theme.breakpoints.up('lg')]: {
       justifyContent: 'flex-end',
     },
