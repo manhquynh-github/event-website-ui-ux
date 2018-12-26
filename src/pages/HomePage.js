@@ -15,29 +15,19 @@ import Colors from '../constants/Colors';
 import { SampleHotEvents, SampleTopics, WhyUsContent } from '../data/Data';
 import Layout from '../constants/Layout';
 import Footer from '../components/Footer';
+import ResizeListener from '../components/ResizeListener';
+import ScrollListener from '../components/ScrollListener';
 
 class HomePage extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = { width: 0, height: 0, atTop: false };
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-    this.updateWindowScroll = this.updateWindowScroll.bind(this);
-  }
-
-  componentDidMount() {
-    this.updateWindowDimensions();
-    this.updateWindowScroll();
-    window.addEventListener('resize', this.updateWindowDimensions);
-    window.addEventListener('scroll', this.updateWindowScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
-    window.removeEventListener('scroll', this.updateWindowScroll);
+  constructor() {
+    super();
+    this.state = { atTop: false };
+    this.resizeHandler = this.resizeHandler.bind(this);
+    this.scrollHandler = this.scrollHandler.bind(this);
   }
 
   render() {
@@ -45,6 +35,8 @@ class HomePage extends Component {
 
     return (
       <div className={classes.root}>
+        <ResizeListener handler={this.resizeHandler} />
+        <ScrollListener handler={this.scrollHandler} />
         <TopBar elevation={this.state.atTop ? 0 : 4} />
         <main className={classes.content}>
           <div className={classes.paddedContainer}>
@@ -60,11 +52,7 @@ class HomePage extends Component {
 
   renderHotEventCard() {
     const { classes } = this.props;
-    const hotEventCardHeight =
-      ((this.state.height + Layout.default.offset.y - Layout.navBar.height) /
-        3) *
-      2;
-    const hotEventCardImageHeight = hotEventCardHeight - 50;
+    const { hotEventCardHeight, hotEventCardImageHeight } = this.state;
     return (
       <HotEventCard
         className={classes.hotEventCard}
@@ -77,18 +65,12 @@ class HomePage extends Component {
 
   renderTopic() {
     const { classes } = this.props;
-    const topicCardHeight =
-      (((this.state.height + Layout.default.offset.y) / 3) * 2 - 64 - 32) / 2;
-    const topicCardLabelHeight = topicCardHeight / 4 + 8;
-    const topicCardImageHeight = topicCardHeight - topicCardLabelHeight;
-    const topicColumns =
-      this.state.width >= Layout.breakpoint.lg
-        ? 4
-        : this.state.width > Layout.breakpoint.sm
-        ? 2
-        : 1;
-    const topicGridWidth =
-      topicCardHeight * topicColumns + Layout.spacing.large * 3;
+    const {
+      topicCardHeight,
+      topicCardImageHeight,
+      topicGridWidth,
+    } = this.state;
+
     return (
       <div className={classes.topicContainer}>
         <Typography className={classes.topicHeading} align="center">
@@ -113,20 +95,8 @@ class HomePage extends Component {
 
   renderWhyUs() {
     const { classes } = this.props;
-    const whyUsGridWidth =
-      this.state.width >= Layout.breakpoint.lg
-        ? this.state.width - 64 * 2 - 32 * 2
-        : this.state.width;
-    const whyUsColumns = this.state.width >= Layout.breakpoint.lg ? 3 : 1;
-    const whyUsGridHeight =
-      this.state.width >= Layout.breakpoint.lg
-        ? ((whyUsGridWidth - 32 * (whyUsColumns - 1)) / whyUsColumns / 16) * 9
-        : ((this.state.height +
-            Layout.default.offset.y -
-            Layout.navBar.height -
-            64 * 2) /
-            3) *
-          3;
+    const { whyUsGridWidth, whyUsGridHeight } = this.state;
+
     return (
       <div className={classes.whyUsContainer}>
         <AdvancedImage
@@ -158,21 +128,91 @@ class HomePage extends Component {
     );
   }
 
-  updateWindowDimensions() {
-    this.setState({ width: window.innerWidth, height: window.innerHeight });
-    console.log(this.state);
+  resizeHandler({ width, height, ref }) {
+    this.setState({
+      /**
+       * HotEventCard
+       */
+
+      // (768 - 50) * 2/3
+      hotEventCardHeight:
+        ((height + Layout.default.offset.y - Layout.navBar.height) * 2) / 3,
+
+      get hotEventCardImageHeight() {
+        return this.hotEventCardHeight - Layout.navBar.height;
+      },
+
+      /**
+       * Topic Grid
+       */
+
+      // ((768 * 2/3) - 64 - 32) / 2
+      topicCardHeight:
+        (((height + Layout.default.offset.y) * 2) / 3 -
+          Layout.spacing.page -
+          Layout.spacing.large) /
+        2,
+
+      // (height / 4) + (4*2)
+      get topicCardLabelHeight() {
+        return this.topicCardHeight / 4 + Layout.spacing.tight * 2;
+      },
+
+      get topicCardImageHeight() {
+        return this.topicCardHeight - this.topicCardLabelHeight;
+      },
+
+      topicColumns: ref.breakpoints({
+        lg: 4,
+        sm: 2,
+        xs: 1,
+      }),
+
+      // (height=width * columns) + (32 * (columns - 1))
+      get topicGridWidth() {
+        const topicColumns = this.topicColumns;
+
+        return (
+          this.topicCardHeight * topicColumns +
+          Layout.spacing.large * (topicColumns - 1)
+        );
+      },
+
+      /**
+       * WhyUsGrid
+       */
+
+      // 1366 - (64 * 2) - (32 * 2)
+      whyUsGridWidth: ref.breakpoints({
+        lg: width - Layout.spacing.page * 2 - Layout.spacing.large * 2,
+        xs: width,
+      }),
+
+      whyUsColumns: ref.breakpoints({
+        lg: 3,
+        xs: 1,
+      }),
+
+      get whyUsGridHeight() {
+        const whyUsColumns = this.whyUsColumns;
+
+        return ref.breakpoints({
+          // (width - (32 * (columns - 1))) / columns /16*9
+          lg:
+            ((this.whyUsGridWidth - Layout.spacing.large * (whyUsColumns - 1)) /
+              whyUsColumns /
+              16) *
+            9,
+
+          // (height - 50 - (64*2))
+          xs: height + Layout.default.offset.y - Layout.navBar.height - 64 * 2,
+        });
+      },
+    });
   }
 
-  updateWindowScroll(event) {
-    if (!this.state.atTop && window.scrollY === 0) {
-      this.setState({
-        atTop: true,
-      });
-    } else if (this.state.atTop && window.scrollY !== 0) {
-      this.setState({
-        atTop: false,
-      });
-    }
+  scrollHandler({ y }) {
+    this.setState({ atTop: y === 0 });
   }
 }
 
