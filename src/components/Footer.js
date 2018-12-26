@@ -17,6 +17,7 @@ import Layout from '../constants/Layout';
 class Footer extends Component {
   static propTypes = {
     classes: PropTypes.object.isRequired,
+    verticalContact: PropTypes.bool,
   };
 
   render() {
@@ -68,7 +69,11 @@ class Footer extends Component {
           </Typography>
         </Grid>
         <Grid item xs={12} lg={6} container alignItems="flex-end">
-          <Grid container spacing={32} className={classes.contactGrid}>
+          <Grid
+            container
+            direction={this.props.verticalContact ? 'column' : 'row'}
+            spacing={this.props.verticalContact ? 16 : 32}
+            className={classes.contactGrid}>
             <Grid item>
               <Typography className={classes.contactLink}>Email us</Typography>
             </Grid>
@@ -143,7 +148,7 @@ const styles = (theme) => ({
     marginTop: Layout.spacing.medium,
   },
   contactGrid: {
-    marginTop: 0,
+    marginTop: Layout.spacing.medium,
     [theme.breakpoints.up('lg')]: {
       justifyContent: 'flex-end',
     },

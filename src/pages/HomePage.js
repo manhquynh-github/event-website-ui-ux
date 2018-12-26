@@ -23,7 +23,7 @@ class HomePage extends Component {
 
   constructor() {
     super();
-    this.state = { atTop: false };
+    this.state = { atTop: false, verticalContact: false };
     this.resizeHandler = this.resizeHandler.bind(this);
     this.scrollHandler = this.scrollHandler.bind(this);
   }
@@ -42,7 +42,7 @@ class HomePage extends Component {
             {this.renderTopic()}
             {this.renderWhyUs()}
           </div>
-          <Footer />
+          <Footer verticalContact={this.state.verticalContact} />
         </main>
       </div>
     );
@@ -206,6 +206,15 @@ class HomePage extends Component {
           xs: height + Layout.default.offset.y - Layout.navBar.height - 64 * 2,
         });
       },
+
+      /**
+       * footer
+       */
+
+      verticalContact: ref.breakpoints({
+        sm: false,
+        xs: true,
+      }),
     });
   }
 
