@@ -53,40 +53,42 @@ class HotEventCard extends Component {
         className={classNames(classes.card, this.props.className)}
         style={this.props.style}
         square>
-        <CardActionArea disableRipple className={classes.cardActionArea}>
-          <div className={classes.imageContainer}>
-            <AdvancedImage
-              blur
-              dim
-              src={event.image}
-              {...this.props.imageProps}
-            />
-            <div className={classes.overlay}>
-              <Typography className={classes.title} gutterBottom noWrap>
-                {event.title}
-              </Typography>
-              <div className={classes.eventChipContainer}>
-                <EventChip tags={event.tags} className={classes.eventChip} />
+        <div className={classes.cardActionAreaContainer}>
+          <CardActionArea className={classes.cardActionArea}>
+            <div className={classes.imageContainer}>
+              <AdvancedImage
+                blur
+                dim
+                src={event.image}
+                {...this.props.imageProps}
+              />
+              <div className={classes.overlay}>
+                <Typography className={classes.title} gutterBottom noWrap>
+                  {event.title}
+                </Typography>
+                <div className={classes.eventChipContainer}>
+                  <EventChip tags={event.tags} className={classes.eventChip} />
+                </div>
+                {this.renderEventDetail()}
               </div>
-              {this.renderEventDetail()}
             </div>
-            <SwipeButton
-              back
-              onClick={() =>
-                this.setState((previousState) => ({
-                  selectedIndex: (previousState.selectedIndex - 1 + 3) % 3,
-                }))
-              }
-            />
-            <SwipeButton
-              onClick={() =>
-                this.setState((previousState) => ({
-                  selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
-                }))
-              }
-            />
-          </div>
-        </CardActionArea>
+          </CardActionArea>
+          <SwipeButton
+            back
+            onClick={() =>
+              this.setState((previousState) => ({
+                selectedIndex: (previousState.selectedIndex - 1 + 3) % 3,
+              }))
+            }
+          />
+          <SwipeButton
+            onClick={() =>
+              this.setState((previousState) => ({
+                selectedIndex: (previousState.selectedIndex + 1 + 3) % 3,
+              }))
+            }
+          />
+        </div>
         <CardContent className={classes.cardContent}>
           {this.renderOtherEvents()}
         </CardContent>
@@ -191,6 +193,9 @@ class HotEventCard extends Component {
 const styles = (theme) => ({
   card: {
     boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.25)',
+  },
+  cardActionAreaContainer: {
+    position: 'relative',
   },
   cardActionArea: {
     color: fade(Colors.black, 0.5),
