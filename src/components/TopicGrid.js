@@ -1,9 +1,8 @@
 import { Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import TopicCard from './TopicCard';
-import classNames from 'classnames';
 import { strictProps as TopicProps } from '../models/Topic';
+import TopicCard from './TopicCard';
 
 class TopicGrid extends Component {
   static propTypes = {

@@ -1,18 +1,16 @@
-import React, { Component } from 'react';
 import {
-  CardContent,
-  CardMedia,
   Card,
   CardActionArea,
+  CardContent,
   Typography,
 } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import AdvancedImage from './AdvancedImage';
-import Colors from '../constants/Colors';
 import { withStyles } from '@material-ui/core/styles';
-import shadows from '@material-ui/core/styles/shadows';
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Colors from '../constants/Colors';
 import { strictProps as TopicProps } from '../models/Topic';
+import AdvancedImage from './AdvancedImage';
 
 class TopicCard extends Component {
   static propTypes = {

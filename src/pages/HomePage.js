@@ -1,22 +1,20 @@
 import { Button, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import Add from '@material-ui/icons/Add';
-import moment from 'moment';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import BackgroundImage from '../assets/background';
-import EventImage from '../assets/events';
 import AdvancedImage from '../components/AdvancedImage';
+import Footer from '../components/Footer';
 import HotEventCard from '../components/HotEventCard';
+import ResizeListener from '../components/ResizeListener';
+import ScrollListener from '../components/ScrollListener';
 import TopBar from '../components/TopBar';
 import TopicGrid from '../components/TopicGrid';
 import WhyUsGrid from '../components/WhyUsGrid';
 import Colors from '../constants/Colors';
-import { SampleHotEvents, SampleTopics, WhyUsContent } from '../data/Data';
 import Layout from '../constants/Layout';
-import Footer from '../components/Footer';
-import ResizeListener from '../components/ResizeListener';
-import ScrollListener from '../components/ScrollListener';
+import { SampleHotEvents, SampleTopics, WhyUsContent } from '../data/Data';
 
 class HomePage extends Component {
   static propTypes = {

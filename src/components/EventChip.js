@@ -1,10 +1,10 @@
 import Chip from '@material-ui/core/Chip';
 import { withStyles } from '@material-ui/core/styles';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
-import classNames from 'classnames';
 
 class EventChip extends Component {
   static propTypes = {

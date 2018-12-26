@@ -1,18 +1,18 @@
-import { Grid, Typography, Button } from '@material-ui/core';
+import {
+  faFacebookF,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Grid, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { darken } from '@material-ui/core/styles/colorManipulator';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
-import { withStyles } from '@material-ui/core/styles';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faFacebookF,
-  faTwitter,
-  faLinkedin,
-  faInstagram,
-} from '@fortawesome/free-brands-svg-icons';
-import { darken } from '@material-ui/core/styles/colorManipulator';
-import classNames from 'classnames';
 
 class Footer extends Component {
   static propTypes = {

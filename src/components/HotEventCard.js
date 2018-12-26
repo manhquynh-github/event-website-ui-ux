@@ -3,34 +3,27 @@ import {
   CardActionArea,
   CardContent,
   Grid,
+  List,
   ListItem,
   ListItemIcon,
-  ListItemText,
   Typography,
-  Button,
-  List,
 } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 import {
   AttachMoney,
   CalendarTodayOutlined,
   LocationOnOutlined,
 } from '@material-ui/icons';
-import moment from 'moment';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import Colors from '../constants/Colors';
+import Layout from '../constants/Layout';
+import { strictProps as EventProps } from '../models/Event';
 import AdvancedImage from './AdvancedImage';
 import EventChip from './EventChip';
-import { withStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-import Colors from '../constants/Colors';
-import classNames from 'classnames';
-import { strictProps as EventProps } from '../models/Event';
-import {
-  ArrowBackIosOutlined,
-  ArrowForwardIosOutlined,
-} from '@material-ui/icons';
 import SwipeButton from './SwipeButton';
-import Layout from '../constants/Layout';
 
 class HotEventCard extends Component {
   static propTypes = {
