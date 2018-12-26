@@ -45,12 +45,6 @@ class ResizeListener extends Component {
     Object.keys(Layout.breakpoint)
       .reverse()
       .some((e) => {
-        console.log(
-          e,
-          object.hasOwnProperty(e),
-          this.dimensions.width,
-          Layout.breakpoint[e]
-        );
         if (
           object.hasOwnProperty(e) &&
           this.dimensions.width >= Layout.breakpoint[e]
