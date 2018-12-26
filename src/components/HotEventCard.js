@@ -222,7 +222,6 @@ const styles = (theme) => ({
     color: Colors.white,
     fontSize: 36,
     fontWeight: 400,
-    lineHeight: 'normal',
     textAlign: 'center',
   },
   eventChipContainer: {
@@ -280,7 +279,6 @@ const styles = (theme) => ({
     fontFamily: 'Roboto',
     fontSize: 24,
     fontWeight: 300,
-    lineHeight: 'normal',
   },
   otherEventGrid: {
     height: 50,
@@ -314,7 +312,6 @@ const styles = (theme) => ({
     margin: 'auto',
     fontSize: 24,
     fontWeight: 300,
-    lineHeight: 'normal',
   },
   buttonOverlay: {
     position: 'absolute',

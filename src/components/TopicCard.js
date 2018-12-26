@@ -74,13 +74,11 @@ const styles = (theme) => ({
     marginTop: 4,
     marginBottom: 0,
     color: Colors.black,
-    lineHeight: 'normal',
   },
   subTitle: {
     marginTop: 0,
     fontSize: 18,
     marginBottom: 4,
-    lineHeight: 'normal',
   },
 });
 

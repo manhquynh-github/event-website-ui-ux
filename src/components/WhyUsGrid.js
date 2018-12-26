@@ -58,13 +58,11 @@ const styles = (theme) => ({
     color: Colors.white,
     fontSize: 30,
     fontVariant: 'small-caps',
-    lineHeight: 'normal',
   },
   content: {
     marginTop: 16,
     color: Colors.white,
     fontSize: 21,
-    lineHeight: 'normal',
   },
   contentContainer: {
     display: 'flex',

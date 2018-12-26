@@ -14,6 +14,7 @@ import WhyUsGrid from '../components/WhyUsGrid';
 import Colors from '../constants/Colors';
 import { SampleHotEvents, SampleTopics, WhyUsContent } from '../data/Data';
 import Layout from '../constants/Layout';
+import Footer from '../components/Footer';
 
 class HomePage extends Component {
   static propTypes = {
@@ -51,6 +52,7 @@ class HomePage extends Component {
             {this.renderTopic()}
             {this.renderWhyUs()}
           </div>
+          <Footer />
         </main>
       </div>
     );
@@ -184,7 +186,7 @@ const styles = (theme) => ({
   },
   content: {
     flexGrow: 1,
-    backgroundColor: Colors.paper,
+    backgroundColor: Colors.lightGray,
     minWidth: 300, // So the Typography noWrap works
     minHeight: 300,
   },
@@ -206,7 +208,6 @@ const styles = (theme) => ({
     color: Colors.primary,
     fontSize: 36,
     fontWeight: 300,
-    lineHeight: 'normal',
   },
   topicGrid: {
     marginTop: Layout.spacing.large,
@@ -223,7 +224,6 @@ const styles = (theme) => ({
     color: Colors.white,
     fontSize: 36,
     fontWeight: 300,
-    lineHeight: 'normal',
   },
   whyUsContainer: {
     position: 'relative',
