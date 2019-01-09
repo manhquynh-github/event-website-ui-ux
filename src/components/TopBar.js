@@ -1,24 +1,20 @@
 import {
   AppBar,
-  Badge,
-  IconButton,
   Button,
+  IconButton,
   Input,
   Menu,
   MenuItem,
   Toolbar,
   Typography,
 } from '@material-ui/core';
-
 import { withStyles } from '@material-ui/core/styles';
-import { fade } from '@material-ui/core/styles/colorManipulator';
-
-import Add from '@material-ui/icons/Add';
-import MenuIcon from '@material-ui/icons/Menu';
-import MoreIcon from '@material-ui/icons/MoreVert';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import SearchIcon from '@material-ui/icons/Search';
-import Settings from '@material-ui/icons/Settings';
+import {
+  AccountCircle,
+  Add,
+  MoreVert as MoreIcon,
+  Search as SearchIcon,
+} from '@material-ui/icons';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
@@ -65,16 +61,12 @@ class TopBar extends Component {
         open={isMobileMenuOpen}
         onClose={this.onMobileMenuClose}>
         <MenuItem>
-          <IconButton color="inherit">
-            <Add />
-          </IconButton>
-          <p>Add Task</p>
+          <Add className={classes.menuItemIcon} />
+          Create an event
         </MenuItem>
         <MenuItem>
-          <IconButton color="inherit">
-            <Settings />
-          </IconButton>
-          <p>Settings</p>
+          <AccountCircle className={classes.menuItemIcon} />
+          Sign in
         </MenuItem>
       </Menu>
     );
@@ -89,11 +81,7 @@ class TopBar extends Component {
               aria-label="Open drawer">
               <MenuIcon />
             </IconButton> */}
-            <Typography
-              className={classes.title}
-              variant="title"
-              color="inherit"
-              noWrap>
+            <Typography className={classes.title} noWrap>
               Event Hackathon
             </Typography>
             <div className={classes.search}>
@@ -115,16 +103,14 @@ class TopBar extends Component {
                 <Add />
                 Create an event
               </Button>
-              <IconButton color="inherit">
-                <Settings />
-              </IconButton>
+              <Typography className={classes.signIn}>Sign in</Typography>
             </div>
             <div className={classes.sectionMobile}>
               <IconButton
                 aria-haspopup="true"
                 onClick={this.onMobileMenuOpen}
                 color="inherit">
-                <MoreIcon />
+                <MoreIcon className={classes.moreIcon} />
               </IconButton>
             </div>
           </Toolbar>
@@ -149,6 +135,13 @@ const styles = (theme) => ({
     height: 50,
     paddingLeft: Layout.spacing.page,
     paddingRight: Layout.spacing.page,
+    [theme.breakpoints.down('md')]: {
+      paddingLeft: Layout.spacing.medium,
+      paddingRight: Layout.spacing.medium,
+    },
+    transition: theme.transitions.create(['box-shadow'], {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   toolbar: {
     minHeight: 0,
@@ -159,6 +152,7 @@ const styles = (theme) => ({
     marginRight: 20,
   },
   title: {
+    fontSize: 24,
     display: 'none',
     [theme.breakpoints.up('sm')]: {
       display: 'block',
@@ -168,7 +162,7 @@ const styles = (theme) => ({
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
-    backgroundColor: Colors.paper,
+    backgroundColor: Colors.lightGray,
     marginRight: theme.spacing.unit * 2,
     marginLeft: 0,
     width: '100%',
@@ -180,6 +174,9 @@ const styles = (theme) => ({
       marginLeft: theme.spacing.unit * 4,
       width: 350,
     },
+    transition: theme.transitions.create(['background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   searchIcon: {
     width: 50,
@@ -213,10 +210,31 @@ const styles = (theme) => ({
     color: Colors.white,
     height: 40,
     alignSelf: 'center',
+    boxShadow: '0px 0px 4px rgba(0, 0, 0, 0.25)',
+    borderRadius: 4,
+    fontSize: 18,
+    textTransform: 'none',
     '&:hover': {
       backgroundColor: Colors.primaryDark,
       color: Colors.white,
     },
+  },
+  signIn: {
+    alignSelf: 'center',
+    fontWeight: 300,
+    fontSize: 18,
+    marginLeft: Layout.spacing.large,
+    color: Colors.black,
+    cursor: 'pointer',
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: 'transparent',
+    '&:hover': {
+      borderBottomColor: Colors.black,
+    },
+    transition: theme.transitions.create(['border-bottom-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
   },
   sectionDesktop: {
     display: 'none',
@@ -229,6 +247,12 @@ const styles = (theme) => ({
     [theme.breakpoints.up('md')]: {
       display: 'none',
     },
+  },
+  moreIcon: {
+    color: Colors.black,
+  },
+  menuItemIcon: {
+    marginRight: Layout.spacing.medium,
   },
 });
 
