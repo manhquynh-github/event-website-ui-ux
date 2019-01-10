@@ -27,10 +27,10 @@ class AdvancedImage extends Component {
     orientation: 'horizontal',
     height: 100,
     width: '100%',
-    blur: false,
+    blur: undefined,
     radius: 50,
-    dim: false,
-    showOriginal: false,
+    dim: undefined,
+    showOriginal: undefined,
   };
 
   render() {

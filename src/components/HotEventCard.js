@@ -1,3 +1,5 @@
+import { faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   Card,
   CardActionArea,
@@ -10,11 +12,7 @@ import {
 } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import { fade } from '@material-ui/core/styles/colorManipulator';
-import {
-  AttachMoney,
-  CalendarTodayOutlined,
-  LocationOnOutlined,
-} from '@material-ui/icons';
+import { CalendarTodayOutlined, LocationOnOutlined } from '@material-ui/icons';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
@@ -137,7 +135,11 @@ class HotEventCard extends Component {
             </ListItem>
             <ListItem disableGutters className={classes.detailItem}>
               <ListItemIcon className={classes.detailIcon}>
-                <AttachMoney />
+                <FontAwesomeIcon
+                  icon={faTrophy}
+                  color={Colors.white}
+                  size="lg"
+                />
               </ListItemIcon>
               <Typography className={classes.detailText}>
                 {event.prize}
