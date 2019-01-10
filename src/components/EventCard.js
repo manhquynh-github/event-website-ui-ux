@@ -1,37 +1,20 @@
-import React, { Component } from 'react';
-import Colors from '../constants/Colors';
-import {
-  Card,
-  CardActionArea,
-  CardContent,
-  Grid,
-  List,
-  ListItem,
-  ListItemIcon,
-  Typography,
-  Paper,
-  Button,
-} from '@material-ui/core';
-import {
-  faMapMarkerAlt,
-  faCalendar,
-  faTrophy,
-  faShare,
-} from '@fortawesome/free-solid-svg-icons';
+import { faShare, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Button, Grid, Paper, Typography } from '@material-ui/core';
+import { withStyles } from '@material-ui/core/styles';
+import { darken } from '@material-ui/core/styles/colorManipulator';
 import {
   BookmarkBorder,
   CalendarTodayOutlined,
   LocationOnOutlined,
 } from '@material-ui/icons';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import AdvancedImage from './AdvancedImage';
-import { strictProps as EventProps } from '../models/Event';
+import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
+import { strictProps as EventProps } from '../models/Event';
 import EventChip from './EventChip';
-import { darken } from '@material-ui/core/styles/colorManipulator';
 
 class EventCard extends Component {
   static propTypes = {
@@ -51,53 +34,55 @@ class EventCard extends Component {
       <Paper
         className={classNames(classes.root, this.props.className)}
         style={this.props.style}>
-        <Typography className={classes.title} noWrap>
-          {event.title}
-        </Typography>
-        <div className={classes.eventChipContainer}>
-          <EventChip tags={event.tags} className={classes.eventChip} />
-        </div>
-        <Grid
-          container
-          spacing={Layout.spacing.small}
-          className={classes.eventDetailGrid}>
-          <Grid item container xs={12} direction="row" alignItems="center">
-            <div className={classes.detailIconContainer}>
-              <LocationOnOutlined />
-            </div>
-            <Typography className={classes.detailText} noWrap>
-              {formattedLocation}
-            </Typography>
+        <div className={classes.container}>
+          <Typography className={classes.title} noWrap>
+            {event.title}
+          </Typography>
+          <div className={classes.eventChipContainer}>
+            <EventChip tags={event.tags} className={classes.eventChip} />
+          </div>
+          <Grid
+            container
+            spacing={Layout.spacing.small}
+            className={classes.eventDetailGrid}>
+            <Grid item container xs={12} direction="row" alignItems="center">
+              <div className={classes.detailIconContainer}>
+                <LocationOnOutlined />
+              </div>
+              <Typography className={classes.detailText} noWrap>
+                {formattedLocation}
+              </Typography>
+            </Grid>
+            <Grid item container xs={12} direction="row" alignItems="center">
+              <div className={classes.detailIconContainer}>
+                <CalendarTodayOutlined />
+              </div>
+              <Typography className={classes.detailText} noWrap>
+                {`${event.startDate.format('MMM DD')} - ${event.endDate.format(
+                  'MMM DD'
+                )}`}
+              </Typography>
+            </Grid>
+            <Grid item container xs={12} direction="row" alignItems="center">
+              <div className={classes.detailIconContainer}>
+                <FontAwesomeIcon icon={faTrophy} size="lg" />
+              </div>
+              <Typography className={classes.detailText} noWrap>
+                {event.prize}
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid item container xs={12} direction="row" alignItems="center">
-            <div className={classes.detailIconContainer}>
-              <CalendarTodayOutlined />
-            </div>
-            <Typography className={classes.detailText} noWrap>
-              {`${event.startDate.format('MMM DD')} - ${event.endDate.format(
-                'MMM DD'
-              )}`}
-            </Typography>
-          </Grid>
-          <Grid item container xs={12} direction="row" alignItems="center">
-            <div className={classes.detailIconContainer}>
-              <FontAwesomeIcon icon={faTrophy} size="lg" />
-            </div>
-            <Typography className={classes.detailText} noWrap>
-              {event.prize}
-            </Typography>
-          </Grid>
-        </Grid>
-        <div className={classes.actionContainer}>
-          <Button className={classes.registerButton} variant="contained">
-            Register
-          </Button>
-          <Button className={classes.otherButton} variant="contained">
-            <BookmarkBorder className={classes.otherIcon} />
-          </Button>
-          <Button className={classes.otherButton} variant="contained">
-            <FontAwesomeIcon icon={faShare} size="lg" />
-          </Button>
+          <div className={classes.actionContainer}>
+            <Button className={classes.registerButton} variant="contained">
+              Register
+            </Button>
+            <Button className={classes.otherButton} variant="contained">
+              <BookmarkBorder className={classes.otherIcon} />
+            </Button>
+            <Button className={classes.otherButton} variant="contained">
+              <FontAwesomeIcon icon={faShare} size="lg" />
+            </Button>
+          </div>
         </div>
       </Paper>
     );
@@ -106,12 +91,14 @@ class EventCard extends Component {
 
 const styles = (theme) => ({
   root: {
-    padding: 32,
     boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.25)',
     borderRadius: 2.5,
     background:
       'radial-gradient(155.50px at 50% 50%, rgba(33, 150, 243, 0.1875) 0%, rgba(33, 150, 243, 0) 100%)',
     backgroundColor: Colors.white,
+  },
+  container: {
+    margin: Layout.spacing.large,
   },
   title: {
     fontSize: 24,

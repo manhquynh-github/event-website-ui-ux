@@ -12,6 +12,7 @@ export const SampleHotEvents = [
     prize: '1st Prize €7000',
     image: EventImage.Event1,
     link: '#',
+    description: `Linde and Intel invite you to take part in the Linde.Intel.AI.Challenge: a Hackathon focused on solving the Future of Smart Logistics with Machine Learning and AI.\nYou will be challenged to find patterns and similarities in gas tanks behaviour and create a prediction model for a timeframe of a day or an hour. The data for this task will be based on real-life data from a real location. Finally, you will need to create a UI/UX that makes the prediction understandable for the human controller and will instill confidence in the prediction model. You will use Machine Learning and basically train an AI.`,
   },
   {
     title: 'BE5 HACKDAYS',

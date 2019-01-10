@@ -65,6 +65,7 @@ class AdvancedImage extends Component {
         <div className={classes.background} style={backgroundStyle} />
         <div className={classes.media} style={mediaStyle} />
         <div className={classes.dimOverlay} style={dimOverlayStyle} />
+        {this.props.children}
       </div>
     );
   }

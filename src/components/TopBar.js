@@ -226,9 +226,9 @@ const styles = (theme) => ({
     marginLeft: Layout.spacing.large,
     color: Colors.black,
     cursor: 'pointer',
-    borderStyle: 'solid',
-    borderWidth: 2,
-    borderColor: 'transparent',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: 2,
+    borderBottomColor: 'transparent',
     '&:hover': {
       borderBottomColor: Colors.black,
     },
