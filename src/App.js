@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider theme={theme}>
-        <DetailPage />
+        <HomePage />
       </MuiThemeProvider>
     );
   }

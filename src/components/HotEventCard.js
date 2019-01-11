@@ -29,6 +29,7 @@ class HotEventCard extends Component {
     hotEvents: PropTypes.arrayOf(PropTypes.shape(EventProps)).isRequired,
     imageProps: PropTypes.object,
     selectedIndex: PropTypes.number,
+    onCardClick: PropTypes.func,
   };
 
   static defaultProps = {
@@ -40,6 +41,7 @@ class HotEventCard extends Component {
     this.state = {
       selectedIndex: props.selectedIndex,
     };
+    this.onCardClick = this.onCardClick.bind(this);
   }
 
   render() {
@@ -52,7 +54,9 @@ class HotEventCard extends Component {
         style={this.props.style}
         square>
         <div className={classes.cardActionAreaContainer}>
-          <CardActionArea className={classes.cardActionArea}>
+          <CardActionArea
+            className={classes.cardActionArea}
+            onClick={this.onCardClick}>
             <div className={classes.imageContainer}>
               <AdvancedImage
                 blur
@@ -189,6 +193,12 @@ class HotEventCard extends Component {
         ))}
       </Grid>
     );
+  }
+
+  onCardClick() {
+    if (this.props.onCardClick) {
+      this.props.onCardClick({ index: this.state.selectedIndex });
+    }
   }
 }
 

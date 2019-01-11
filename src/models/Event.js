@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 
 export const propTypes = {
+  id: PropTypes.number,
   title: PropTypes.string,
   image: PropTypes.string,
   location: PropTypes.string,
@@ -10,9 +11,11 @@ export const propTypes = {
   link: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.string),
   prize: PropTypes,
+  description: PropTypes.string,
 };
 
 export const strictProps = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
@@ -21,6 +24,7 @@ export const strictProps = {
   link: PropTypes.string.isRequired,
   tags: PropTypes.arrayOf(PropTypes.string).isRequired,
   prize: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default {

@@ -38,7 +38,7 @@ const styles = (theme) => ({
   content: {
     fontSize: 18,
     fontWeight: 300,
-    lineHeight: '120%',
+    lineHeight: '140%',
     marginTop: Layout.spacing.medium,
   },
   paragraph: {

@@ -15,6 +15,13 @@ import WhyUsGrid from '../components/WhyUsGrid';
 import Colors from '../constants/Colors';
 import Layout from '../constants/Layout';
 import { SampleHotEvents, SampleTopics, WhyUsContent } from '../data/Data';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Redirect,
+  withRouter,
+} from 'react-router-dom';
 
 class HomePage extends Component {
   static propTypes = {
@@ -23,13 +30,23 @@ class HomePage extends Component {
 
   constructor() {
     super();
-    this.state = { atTop: false, verticalContact: false };
+    this.state = {
+      atTop: false,
+      verticalContact: false,
+      isRedirecting: false,
+      redirectTo: { pathname: '/' },
+    };
     this.resizeHandler = this.resizeHandler.bind(this);
     this.scrollHandler = this.scrollHandler.bind(this);
+    this.onCardClick = this.onCardClick.bind(this);
   }
 
   render() {
     const { classes } = this.props;
+
+    if (this.state.isRedirecting) {
+      return <Redirect to={this.state.redirectTo} />;
+    }
 
     return (
       <div className={classes.root}>
@@ -57,8 +74,19 @@ class HomePage extends Component {
         style={{ height: hotEventCardHeight }}
         hotEvents={SampleHotEvents}
         imageProps={{ height: hotEventCardImageHeight }}
+        onCardClick={this.onCardClick}
       />
     );
+  }
+
+  onCardClick({ index }) {
+    console.log(index);
+    this.setState({
+      isRedirecting: true,
+      redirectTo: {
+        pathname: `/detail/${index}`,
+      },
+    });
   }
 
   renderTopic() {

@@ -4,6 +4,7 @@ import EventImage from '../assets/events';
 
 export const SampleHotEvents = [
   {
+    id: 0,
     title: 'Linde.Intel.AI.Challenge',
     tags: ['AI', 'Industry'],
     startDate: moment(new Date()),
@@ -11,10 +12,11 @@ export const SampleHotEvents = [
     location: 'Munich, Germany',
     prize: '1st Prize €7000',
     image: EventImage.Event1,
-    link: '#',
+    link: '/detail/0',
     description: `Linde and Intel invite you to take part in the Linde.Intel.AI.Challenge: a Hackathon focused on solving the Future of Smart Logistics with Machine Learning and AI.\nYou will be challenged to find patterns and similarities in gas tanks behaviour and create a prediction model for a timeframe of a day or an hour. The data for this task will be based on real-life data from a real location. Finally, you will need to create a UI/UX that makes the prediction understandable for the human controller and will instill confidence in the prediction model. You will use Machine Learning and basically train an AI.`,
   },
   {
+    id: 1,
     title: 'BE5 HACKDAYS',
     tags: ['Industry', 'Robotic', 'VR', 'AR'],
     startDate: moment(new Date(2019, 2, 1)),
@@ -22,17 +24,20 @@ export const SampleHotEvents = [
     location: 'GARCHING BEI MUNCHEN, GERMANY',
     prize: '1st Prize €7000',
     image: EventImage.Event2,
-    link: '#',
+    link: '/detail/1',
+    description: `Linde and Intel invite you to take part in the Linde.Intel.AI.Challenge: a Hackathon focused on solving the Future of Smart Logistics with Machine Learning and AI.\nYou will be challenged to find patterns and similarities in gas tanks behaviour and create a prediction model for a timeframe of a day or an hour. The data for this task will be based on real-life data from a real location. Finally, you will need to create a UI/UX that makes the prediction understandable for the human controller and will instill confidence in the prediction model. You will use Machine Learning and basically train an AI.`,
   },
   {
+    id: 2,
     title: 'Blockchain Connect Conference',
     tags: ['FinTech', 'IoT', 'Blockchain', 'Cybersecurity'],
     startDate: moment(new Date(2019, 1, 11)),
     endDate: moment(new Date(2019, 1, 11)),
     location: 'Mission St, San Francisco',
-    prize: '~',
+    prize: '$7000',
     image: EventImage.Event3,
-    link: '#',
+    link: '/detail/2',
+    description: `Linde and Intel invite you to take part in the Linde.Intel.AI.Challenge: a Hackathon focused on solving the Future of Smart Logistics with Machine Learning and AI.\nYou will be challenged to find patterns and similarities in gas tanks behaviour and create a prediction model for a timeframe of a day or an hour. The data for this task will be based on real-life data from a real location. Finally, you will need to create a UI/UX that makes the prediction understandable for the human controller and will instill confidence in the prediction model. You will use Machine Learning and basically train an AI.`,
   },
 ];
 

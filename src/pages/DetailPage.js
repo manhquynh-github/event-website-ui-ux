@@ -32,7 +32,6 @@ class HomePage extends Component {
     this.state = { atTop: false, verticalContact: false };
     this.resizeHandler = this.resizeHandler.bind(this);
     this.scrollHandler = this.scrollHandler.bind(this);
-    this.event = SampleHotEvents[0];
     this.state = {
       eventCardWidth: 411,
     };
@@ -40,6 +39,8 @@ class HomePage extends Component {
 
   render() {
     const { classes } = this.props;
+    const { params } = this.props.match;
+    const event = SampleHotEvents[params.id];
 
     return (
       <div className={classes.root}>
@@ -50,7 +51,7 @@ class HomePage extends Component {
           <EventCard
             style={{ width: this.state.eventCardWidth }}
             className={classes.eventCard}
-            event={this.event}
+            event={event}
           />
           <SideNavigation className={classes.sideNavigation} />
         </div>
@@ -60,12 +61,12 @@ class HomePage extends Component {
               className={classes.contentContainer}
               style={{ width: this.state.contentWidth }}>
               <AdvancedImage
-                src={this.event.image}
+                src={event.image}
                 showOriginal
                 width={this.state.contentWidth}
                 height={this.state.contentWidth / 2}
               />
-              <Description description={this.event.description} />
+              <Description description={event.description} />
               <Registration />
               <Prize width={this.state.contentWidth} />
               <Map width={this.state.contentWidth} />
@@ -151,6 +152,7 @@ const styles = (theme) => ({
     marginBottom: Layout.spacing.page,
     boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.25)',
     borderRadius: 0,
+    overflow: 'hidden',
   },
 });
 
