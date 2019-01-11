@@ -21,6 +21,9 @@ class AdvancedImage extends Component {
     dimStyle: PropTypes.object,
     showOriginal: PropTypes.bool,
     originalStyle: PropTypes.object,
+    backgroundClassName: PropTypes.object,
+    mediaClassName: PropTypes.object,
+    dimClassName: PropTypes.object,
   };
 
   static defaultProps = {
@@ -62,9 +65,21 @@ class AdvancedImage extends Component {
       <div
         className={classNames(classes.container, this.props.className)}
         style={this.props.style}>
-        <div className={classes.background} style={backgroundStyle} />
-        <div className={classes.media} style={mediaStyle} />
-        <div className={classes.dimOverlay} style={dimOverlayStyle} />
+        <div
+          className={classNames(
+            classes.background,
+            this.props.backgroundClassName
+          )}
+          style={backgroundStyle}
+        />
+        <div
+          className={classNames(classes.media, this.props.mediaClassName)}
+          style={mediaStyle}
+        />
+        <div
+          className={classNames(classes.dimOverlay, this.props.dimClassName)}
+          style={dimOverlayStyle}
+        />
         {this.props.children}
       </div>
     );

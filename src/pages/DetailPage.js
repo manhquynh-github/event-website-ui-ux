@@ -21,6 +21,7 @@ import Registration from '../components/Registration';
 import Prize from '../components/Prize';
 import Map from '../components/Map';
 import SideNavigation from '../components/SideNavigation';
+import Gallery from '../components/Gallery';
 
 class HomePage extends Component {
   static propTypes = {
@@ -70,6 +71,7 @@ class HomePage extends Component {
               <Registration />
               <Prize width={this.state.contentWidth} />
               <Map width={this.state.contentWidth} />
+              <Gallery width={this.state.contentWidth} />
             </Paper>
           </div>
           <Footer verticalContact={this.state.verticalContact} />
