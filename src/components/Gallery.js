@@ -136,6 +136,9 @@ class Gallery extends Component {
 const styles = (theme) => ({
   root: {
     padding: Layout.spacing.large,
+    [theme.breakpoints.down('sm')]: {
+      padding: Layout.spacing.medium,
+    },
   },
   title: {
     fontSize: 24,
