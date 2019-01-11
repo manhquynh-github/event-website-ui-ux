@@ -33,8 +33,6 @@ class HomePage extends Component {
     this.state = {
       atTop: false,
       verticalContact: false,
-      isRedirecting: false,
-      redirectTo: { pathname: '/' },
     };
     this.resizeHandler = this.resizeHandler.bind(this);
     this.scrollHandler = this.scrollHandler.bind(this);
@@ -43,10 +41,6 @@ class HomePage extends Component {
 
   render() {
     const { classes } = this.props;
-
-    if (this.state.isRedirecting) {
-      return <Redirect to={this.state.redirectTo} />;
-    }
 
     return (
       <div className={classes.root}>
@@ -80,12 +74,8 @@ class HomePage extends Component {
   }
 
   onCardClick({ index }) {
-    console.log(index);
-    this.setState({
-      isRedirecting: true,
-      redirectTo: {
-        pathname: `/detail/${index}`,
-      },
+    this.props.history.push({
+      pathname: `/detail/${index}`,
     });
   }
 
@@ -358,4 +348,4 @@ const styles = (theme) => ({
   },
 });
 
-export default withStyles(styles)(HomePage);
+export default withRouter(withStyles(styles)(HomePage));
