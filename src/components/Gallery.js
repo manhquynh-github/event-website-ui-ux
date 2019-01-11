@@ -18,6 +18,7 @@ import EventChip from './EventChip';
 import AdvancedImage from './AdvancedImage';
 import Background from '../assets/background';
 import GalleryCard from './GalleryCard';
+import SwipeButton from './SwipeButton';
 
 class Gallery extends Component {
   static propTypes = {
@@ -46,29 +47,35 @@ class Gallery extends Component {
     return (
       <div className={classes.root}>
         <Typography className={classes.title}>Gallery</Typography>
-        <Grid
-          className={classes.galleryContainer}
-          container
-          spacing={Layout.spacing.large}
-          direction="row"
-          style={{ width: gridWidth }}>
-          <Grid item xs={6}>
-            <GalleryCard
-              width={galleryWidth}
-              height={galleryHeight}
-              caption="Challenge 2017"
-              src={Background.Gallery1}
-            />
+
+        <div className={classes.galleryContainer}>
+          <Grid
+            item
+            container
+            xs={12}
+            spacing={Layout.spacing.large}
+            direction="row"
+            style={{ width: gridWidth }}>
+            <Grid item xs={6}>
+              <GalleryCard
+                width={galleryWidth}
+                height={galleryHeight}
+                caption="Challenge 2017"
+                src={Background.Gallery1}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <GalleryCard
+                width={galleryWidth}
+                height={galleryHeight}
+                caption="Challenge 2016"
+                src={Background.Gallery2}
+              />
+            </Grid>
           </Grid>
-          <Grid item xs={6}>
-            <GalleryCard
-              width={galleryWidth}
-              height={galleryHeight}
-              caption="Challenge 2016"
-              src={Background.Gallery2}
-            />
-          </Grid>
-        </Grid>
+          <SwipeButton back className={classes.backButton} />
+          <SwipeButton className={classes.forwardButton} />
+        </div>
       </div>
     );
   }
@@ -82,7 +89,14 @@ const styles = (theme) => ({
     fontSize: 24,
   },
   galleryContainer: {
-    marginTop: 0,
+    position: 'relative',
+    marginTop: Layout.spacing.large,
+  },
+  backButton: {
+    transform: 'translate(-50%, -50%)',
+  },
+  forwardButton: {
+    transform: 'translate(10%, -50%)',
   },
 });
 

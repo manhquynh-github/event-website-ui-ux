@@ -8,6 +8,7 @@ import {
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import Colors from '../constants/Colors';
+import classNames from 'classnames';
 
 class SwipeButton extends Component {
   static propTypes = {
@@ -27,7 +28,7 @@ class SwipeButton extends Component {
     return (
       <div
         style={this.props.back ? undefined : { right: '0%' }}
-        className={classes.overlay}>
+        className={classNames(classes.overlay, this.props.className)}>
         <Button
           variant="contained"
           className={classes.button}
